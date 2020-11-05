@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="scrollView_marginStart">16dp</dimen>
+    <dimen name="scrollView_marginTop">35dp</dimen>
+    <dimen name="scrollView_marginEnd">16dp</dimen>
+    <dimen name="scrollView_HorizontalBias">1.0</dimen>
+
+    <dimen name="frameLayout_padding">16dp</dimen>
+
+    <dimen name="constraintLayout_paddingBottom">20dp</dimen>
+    <dimen name="constraintLayout_paddingTop">10dp</dimen>
+    <dimen name="zero_dp">0dp</dimen>
+
+    <dimen name="username_marginStart">40dp</dimen>
+    <dimen name="username_marginLeft">31dp</dimen>
+    <dimen name="username_marginTop">31dp</dimen>
+    <dimen name="username_marginEnd">40dp</dimen>
+
+    <dimen name="text_size_18sp">18sp</dimen>
+    <dimen name="text_size_12sp">12sp</dimen>
+    <integer name="maxLength">32</integer>
+
+    <dimen name="editText_layoutHeight">56dp</dimen>
+
+    <dimen name="password_marginStart">40dp</dimen>
+    <dimen name="password_marginTop">15dp</dimen>
+    <dimen name="password_marginEnd">40dp</dimen>
+
+    <dimen name="width_248dp">248dp</dimen>
+    <dimen name="padding_8dp">8dp</dimen>
+    <dimen name="corner_radius_26dp">26dp</dimen>
+
+    <dimen name="loginButton_marginStart">40dp</dimen>
+    <dimen name="loginButton_marginTop">29dp</dimen>
+    <dimen name="loginButton_marginEnd">40dp</dimen>
+    <dimen name="loginButton_spacingExtra">2sp</dimen>
+
+    <dimen name="line_marginStart">41dp</dimen>
+    <dimen name="line_marginEnd">41dp</dimen>
+    <dimen name="line_marginTop">24dp</dimen>
+
+    <dimen name="signUpButton_marginStart">40dp</dimen>
+    <dimen name="signUpButton_marginTop">16dp</dimen>
+    <dimen name="signUpButton_marginEnd">40dp</dimen>
+
+
+</resources>

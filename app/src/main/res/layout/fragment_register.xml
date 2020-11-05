@@ -1,0 +1,102 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/blackish"
+    android:paddingBottom="@dimen/constraintLayout_paddingBottom"
+    android:paddingTop="@dimen/constraintLayout_paddingTop"
+    tools:context="view.RegisterFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/user_input_layout"
+        style="@style/NormalInput"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/username_marginStart"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="@dimen/username_marginEnd"
+        android:background="@color/blackish"
+        android:hint="@string/username"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/FontColor"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/editText_layoutHeight"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/PasswordInput"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/password_marginStart"
+        android:layout_marginTop="@dimen/password_marginTop"
+        android:layout_marginEnd="@dimen/password_marginEnd"
+        android:background="@color/blackish"
+        android:hint="@string/password"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_input_layout">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/PasswordInputFont"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/editText_layoutHeight"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout2"
+        style="@style/PasswordInput"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/password_marginStart"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="@dimen/password_marginEnd"
+        android:background="@color/blackish"
+        android:hint="@string/confirm_password"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/PasswordInputFont"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/editText_layoutHeight"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/loginButton"
+        style="@style/DefaultButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/loginButton_marginStart"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="@dimen/loginButton_marginEnd"
+        android:backgroundTint="@color/colorStrongCyan"
+        android:lineSpacingExtra="@dimen/loginButton_spacingExtra"
+        android:text="@string/register"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

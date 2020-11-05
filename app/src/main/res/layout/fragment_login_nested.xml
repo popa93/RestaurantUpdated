@@ -1,0 +1,115 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/blackish"
+    android:paddingBottom="@dimen/constraintLayout_paddingBottom"
+    android:paddingTop="@dimen/constraintLayout_paddingTop"
+    tools:context="view.LoginNestedFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/user_input_layout"
+        style="@style/NormalInput"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/username_marginStart"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="@dimen/username_marginEnd"
+        android:background="@color/blackish"
+        android:hint="@string/username"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/FontColor"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/editText_layoutHeight"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        style="@style/PasswordInput"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/password_marginStart"
+        android:layout_marginTop="@dimen/password_marginTop"
+        android:layout_marginEnd="@dimen/password_marginEnd"
+        android:background="@color/blackish"
+        android:hint="@string/password"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_input_layout">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/PasswordInputFont"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/editText_layoutHeight"
+            android:textColor="@color/white" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/loginButton"
+        style="@style/DefaultButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/loginButton_marginStart"
+        android:layout_marginTop="@dimen/loginButton_marginTop"
+        android:layout_marginEnd="@dimen/loginButton_marginEnd"
+        android:backgroundTint="@color/colorStrongCyan"
+        android:lineSpacingExtra="@dimen/loginButton_spacingExtra"
+        android:text="@string/log_in"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+
+    <ImageView
+        android:id="@+id/line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/line_marginStart"
+        android:layout_marginTop="@dimen/line_marginTop"
+        android:layout_marginEnd="@dimen/line_marginEnd"
+        android:src="@drawable/ic_line"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginButton" />
+
+    <Button
+        android:id="@+id/signUpButton"
+        style="@style/OutlineButton"
+        android:layout_width="@dimen/zero_dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/signUpButton_marginStart"
+        android:layout_marginTop="@dimen/signUpButton_marginTop"
+        android:layout_marginEnd="@dimen/signUpButton_marginEnd"
+        android:text="@string/sign_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/line"
+        app:strokeColor="@color/white"/>
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="325dp"
+        android:layout_height="206dp"
+        android:layout_gravity="center"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
