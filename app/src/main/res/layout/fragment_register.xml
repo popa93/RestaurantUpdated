@@ -26,6 +26,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/FontColor"
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="@dimen/editText_layoutHeight"
             android:textColor="@color/white" />
@@ -50,6 +51,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/PasswordInputFont"
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="@dimen/editText_layoutHeight"
             android:textColor="@color/white" />
@@ -75,6 +77,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             style="@style/PasswordInputFont"
+            android:id="@+id/coonfirmPassord"
             android:layout_width="match_parent"
             android:layout_height="@dimen/editText_layoutHeight"
             android:textColor="@color/white" />
@@ -82,7 +85,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/loginButton"
+        android:id="@+id/registerButton"
         style="@style/DefaultButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

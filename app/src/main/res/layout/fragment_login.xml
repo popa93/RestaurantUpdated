@@ -6,7 +6,7 @@
     android:background="@color/blackish"
     android:paddingBottom="@dimen/constraintLayout_paddingBottom"
     android:paddingTop="@dimen/constraintLayout_paddingTop"
-    tools:context="view.LoginNestedFragment">
+    tools:context="view.LoginFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/user_input_layout"
@@ -25,6 +25,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email"
             style="@style/FontColor"
             android:layout_width="match_parent"
             android:layout_height="@dimen/editText_layoutHeight"
@@ -49,6 +50,7 @@
 
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/pass"
             style="@style/PasswordInputFont"
             android:layout_width="match_parent"
             android:layout_height="@dimen/editText_layoutHeight"
@@ -96,7 +98,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/line"
-        app:strokeColor="@color/white"/>
+        app:strokeColor="@color/white"
+
+        />
 
     <fragment
         android:id="@+id/mapFragment"

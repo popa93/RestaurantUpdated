@@ -1,6 +1,10 @@
 package view;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -8,11 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
-
-import android.os.Handler;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.restaurantupdated.R;
 
@@ -30,7 +29,7 @@ public class SplashScreenFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        handler=new Handler();
+        handler = new Handler();
 
     }
 
@@ -51,13 +50,13 @@ public class SplashScreenFragment extends Fragment {
             public void run() {
                 jumpToLogin();
             }
-        },1500);
+        }, 1500);
     }
 
-    private void jumpToLogin(){
+    private void jumpToLogin() {
 
-      NavDirections action=SplashScreenFragmentDirections.actionSplashScreenFragmentToLoginNestedFragment();
-        if(getView()!=null)
+        NavDirections action = SplashScreenFragmentDirections.actionSplashScreenFragmentToLoginFragment();
+        if (getView() != null)
             Navigation.findNavController(getView()).navigate(action);
 
     }
