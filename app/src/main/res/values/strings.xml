@@ -8,4 +8,7 @@
     <string name="log_in">Log in</string>
     <string name="sign_up">Sign Up</string>
     <string name="register">Register</string>
+    <string name="cart">Cart</string>
+    <string name="logout">Logout</string>
+    <string name="addToCart">Add to cart</string>
 </resources>

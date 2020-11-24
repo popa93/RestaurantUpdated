@@ -39,5 +39,21 @@
         android:id="@+id/menuFragment"
         android:name="view.MenuFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" />
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_detailsMenuItemFragment4"
+            app:destination="@id/detailsMenuItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsMenuItemFragment"
+        android:name="view.DetailsMenuItemFragment"
+        android:label="fragment_details_menu_item"
+        tools:layout="@layout/fragment_details_menu_item" >
+        <action
+            android:id="@+id/action_detailsMenuItemFragment_to_menuFragment6"
+            app:destination="@id/menuFragment" />
+    </fragment>
 </navigation>

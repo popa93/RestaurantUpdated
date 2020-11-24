@@ -164,6 +164,11 @@ public class LoginFragment extends Fragment implements OnMapReadyCallback {
             Navigation.findNavController(getView()).navigate(action);
         }
 
+        /*NavDirections action = LoginFragmentDirections.actionLoginFragmentToFoodFragment();
+        if (getView() != null) {
+            Navigation.findNavController(getView()).navigate(action);
+        }*/
+
 
     }
 
