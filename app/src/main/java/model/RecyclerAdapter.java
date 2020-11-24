@@ -27,7 +27,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
 
     ArrayList<Pizza> pizzaList;
-   // ArrayList<Drink> drinkList;
+    // ArrayList<Drink> drinkList;
 
     // private List<Drink> drinkList;
 
@@ -48,29 +48,29 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         this.drinkList = drinkList;
     }*/
 
-    public void setClickListener(IMenuClickListener clickListener){
+    public void setClickListener(IMenuClickListener clickListener) {
 
-        this.clickListener=clickListener;
+        this.clickListener = clickListener;
     }
 
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {   //instantiates viewHolder that contains cardViews
-        CardView myCardView=(CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_cardview_item,parent,false);
-        Log.e("tag","sunt in onCreateViewHolder");
+        CardView myCardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_cardview_item, parent, false);
+        Log.e("tag", "sunt in onCreateViewHolder");
         return new MyViewHolder(myCardView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {      //adds the data to the card views
 
-        Log.e("tag","sunt in bind");
+        Log.e("tag", "sunt in bind");
 
-        if(fragName.equals("Food")) {
+        if (fragName.equals("Food")) {
             CardView cardView = holder.cardView;
 
-            ImageView imageView=cardView.findViewById(R.id.info_image);
+            ImageView imageView = cardView.findViewById(R.id.info_image);
             Glide.with(imageView.getContext()).load(pizzaList.get(position).getImageLink()).error(R.mipmap.ic_launcher).into(imageView);
 
             holder.cardView.setTag(pizzaList.get(position));
@@ -83,7 +83,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
             holder.cardView.setOnClickListener(holder);
 
-        }else{
+        } else {
            /* CardView cardView = holder.cardView;
             ImageView imageView = cardView.findViewById(R.id.info_image);
             Drawable drawable = ContextCompat.getDrawable(cardView.getContext(), drinkList.get(position).getImageResourceId());
@@ -113,19 +113,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         return 0;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private CardView cardView;
         private Button button;
+
         public MyViewHolder(@NonNull CardView itemView) {
             super(itemView);
-            cardView= itemView;
-            button=itemView.findViewById(R.id.toCartButton);
+            cardView = itemView;
+            button = itemView.findViewById(R.id.toCartButton);
 
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int position=getAdapterPosition();
+                    int position = getAdapterPosition();
                     clickListener.addButtonClick(position);
                 }
             });
@@ -134,11 +135,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         @Override
         public void onClick(View view) {
 
-            if(fragName.equals("Food"))
-                clickListener.onItemClick((Pizza)view.getTag());
+            if (fragName.equals("Food"))
+                clickListener.onItemClick((Pizza) view.getTag());
             /*else
                 clickListener.onItemClick((Drink)view.getTag());*/
-            Log.e("tag","sunt in clasa MyViewHolder onClick");
+            Log.e("tag", "sunt in clasa MyViewHolder onClick");
 
         }
 
