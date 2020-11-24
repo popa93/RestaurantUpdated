@@ -70,7 +70,7 @@ public class FoodFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         foodViewModel = ViewModelProviders.of(this).get(FoodViewModel.class);
         observeViewModel((RecyclerView) view);
-        foodViewModel.getPizzas();
+        foodViewModel.refresh();
 
     }
 

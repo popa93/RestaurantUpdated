@@ -1,14 +1,25 @@
 package model;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
-public
-class Pizza implements Serializable {
+@Entity(tableName = "Food")
+public class Pizza implements Serializable {
 
-    private String name;
-    private String imageLink;
-    private Long price;
-    private String ingredients;
+    @ColumnInfo(name="item_name")
+    public String name;
+    @ColumnInfo(name="image_link")
+    public String imageLink;
+    @ColumnInfo(name="price")
+    public Long price;
+    @ColumnInfo(name="ingredients")
+    public String ingredients;
+
+    @PrimaryKey(autoGenerate = true)
+    public int uuid;
 
     public Pizza(){
 
