@@ -10,15 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 
 import com.example.restaurantupdated.R;
 
+import viewmodel.SplashScreenViewModel;
+
 
 public class SplashScreenFragment extends Fragment {
 
-
+    private SplashScreenViewModel splashScreenViewModel;
     private Handler handler;
 
     public SplashScreenFragment() {
@@ -44,18 +48,46 @@ public class SplashScreenFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        splashScreenViewModel = ViewModelProviders.of(this).get(SplashScreenViewModel.class);
+        observeViewModel();
 
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                jumpToLogin();
+
+                splashScreenViewModel.checkUserLoginState();
             }
         }, 1500);
     }
 
+
+    private void observeViewModel() {
+
+        splashScreenViewModel.loginStateLiveData.observe(getViewLifecycleOwner(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                if (s.equals("YES")) {
+                    jumpToLogin();
+                } else {
+                    jumpToMenu();
+                }
+            }
+        });
+
+    }
+
+
     private void jumpToLogin() {
 
         NavDirections action = SplashScreenFragmentDirections.actionSplashScreenFragmentToLoginFragment();
+        if (getView() != null)
+            Navigation.findNavController(getView()).navigate(action);
+
+    }
+
+    private void jumpToMenu() {
+
+        NavDirections action = SplashScreenFragmentDirections.actionSplashScreenFragmentToMenuFragment();
         if (getView() != null)
             Navigation.findNavController(getView()).navigate(action);
 
