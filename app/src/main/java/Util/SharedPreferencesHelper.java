@@ -8,6 +8,7 @@ public
 class SharedPreferencesHelper {
 
     private static final String PREF_TIME = "Pref time";
+    private static final String PREF_DATE = "Pref date";
     private static SharedPreferencesHelper instance;
     private SharedPreferences prefs;
 
@@ -32,6 +33,16 @@ class SharedPreferencesHelper {
 
     public long getUpdateTime() {
         return prefs.getLong(PREF_TIME, 0);
+    }
+
+    public void setLastBackendDownloadDate(int day){
+        prefs.edit().putInt(PREF_DATE,day).apply();
+
+    }
+
+    public int getLastBackendDownloadDate(){
+
+        return prefs.getInt(PREF_DATE,0);
     }
 
 

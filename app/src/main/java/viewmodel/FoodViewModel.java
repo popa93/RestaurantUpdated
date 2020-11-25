@@ -16,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import Util.SharedPreferencesHelper;
@@ -27,7 +28,10 @@ public
 class FoodViewModel extends AndroidViewModel {
 
     private ArrayList<Pizza> pizzas = new ArrayList<>();
-    private long refreshTime = 30 * 60 * 1000 * 1000 * 1000L; // 30 min interval will call backend, tiil then will call database
+    Calendar calendar = Calendar.getInstance();
+    private int day;
+    private int dateResult;
+    private long refreshTime = 5* 1000 * 1000 * 1000L; // 5 sec(30 min) interval 
     private SharedPreferencesHelper prefHelper = SharedPreferencesHelper.getInstance(getApplication());
     public MutableLiveData<ArrayList<Pizza>> pizzaMutableLiveData = new MutableLiveData<>();
     private FirebaseDatabase myDatabase;
@@ -40,9 +44,10 @@ class FoodViewModel extends AndroidViewModel {
 
     public void refresh() {
 
+        dateResult=checkDate();
         long updateTime = prefHelper.getUpdateTime();
         long currentTime = System.nanoTime();
-        if (updateTime != 0 && currentTime - updateTime < refreshTime) {
+        if (updateTime != 0 && currentTime - updateTime < refreshTime && dateResult==0) {
 
             fetchFromDatabase();
         } else {
@@ -77,6 +82,17 @@ class FoodViewModel extends AndroidViewModel {
 
             }
         });
+
+    }
+
+    private void setDate(){
+
+        day= calendar.get(Calendar.DATE);
+    }
+
+    private int checkDate(){
+
+        return calendar.get(Calendar.DATE)-(prefHelper.getLastBackendDownloadDate());
 
     }
 
@@ -117,6 +133,8 @@ class FoodViewModel extends AndroidViewModel {
 
             itemsRetrieved(pizzas);
             prefHelper.saveUpdateTime(System.nanoTime());
+            setDate();
+            prefHelper.setLastBackendDownloadDate(day);
 
         }
     }
