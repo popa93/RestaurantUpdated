@@ -11,4 +11,8 @@
     <string name="cart">Cart</string>
     <string name="logout">Logout</string>
     <string name="addToCart">Add to cart</string>
+    <string name="itemNameLabel">Name</string>
+    <string name="quantityLabel">Quantity(g)</string>
+    <string name="priceLabel">Price(lei)</string>
+    <string name="ingredeientsLabel">Ingredients</string>
 </resources>
