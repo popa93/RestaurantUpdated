@@ -24,9 +24,9 @@ class FragmentAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {
-            Log.e("adapter","get item 0");
+            Log.e("adapter", "get item 0");
             foodFragment = new FoodFragment();
-            return  foodFragment;
+            return foodFragment;
         } else if (position == 1)
             drinkFragment = new DrinkFragment();
         return drinkFragment;

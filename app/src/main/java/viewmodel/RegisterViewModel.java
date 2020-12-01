@@ -1,11 +1,8 @@
 package viewmodel;
 
 import android.app.Application;
-import android.content.DialogInterface;
-import android.content.Intent;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
@@ -14,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public
 class RegisterViewModel extends AndroidViewModel {
 
-    public MutableLiveData<String> registerLiveData=new MutableLiveData<>();
+    public MutableLiveData<String> registerLiveData = new MutableLiveData<>();
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private FirebaseAuth authentication;
 
@@ -22,36 +19,34 @@ class RegisterViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public void register(String  email,String password,String confirmPassword){
+    public void register(String email, String password, String confirmPassword) {
 
-        if(email.isEmpty()||password.isEmpty()||confirmPassword.isEmpty()) {
+        if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
 
-          registerLiveData.postValue("All fields must be completed");
+            registerLiveData.postValue("All fields must be completed");
 
-        }else if(!(password.equals(confirmPassword))){
+        } else if (!(password.equals(confirmPassword))) {
 
             registerLiveData.postValue("Password fields must be identical");
-        } else if(!(email.matches(emailPattern))){
+        } else if (!(email.matches(emailPattern))) {
 
             registerLiveData.postValue("Email field bad format");
-        }
-        else{
-            authentication=FirebaseAuth.getInstance();
+        } else {
+            authentication = FirebaseAuth.getInstance();
 
-            int letterCountPass=password.length();
+            int letterCountPass = password.length();
 
 
-            if(letterCountPass>=6) {
+            if (letterCountPass >= 6) {
                 authentication.createUserWithEmailAndPassword(email, password);
 
                 registerLiveData.postValue("OK");
-            }else{
+            } else {
 
                 registerLiveData.postValue("Password must contain at least 6 characters");
 
             }
         }
-
 
 
     }

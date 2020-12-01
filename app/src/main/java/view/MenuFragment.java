@@ -1,7 +1,6 @@
 package view;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,13 +24,11 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.example.restaurantupdated.R;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import model.FragmentAdapter;
 import viewmodel.MenuViewModel;
-import viewmodel.RegisterViewModel;
 
 
 public class MenuFragment extends Fragment {
@@ -53,8 +50,7 @@ public class MenuFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e("menu","sunt in onCreate");
-
+        Log.e("menu", "sunt in onCreate");
 
 
     }
@@ -70,9 +66,9 @@ public class MenuFragment extends Fragment {
         actionBar.setTitle("Menu");
         actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.show();
-        Log.e("menu","sunt in onCreateView");
-        View view= inflater.inflate(R.layout.fragment_menu, container, false);
-        ButterKnife.bind(this,view);
+        Log.e("menu", "sunt in onCreateView");
+        View view = inflater.inflate(R.layout.fragment_menu, container, false);
+        ButterKnife.bind(this, view);
         menuViewModel = ViewModelProviders.of(this).get(MenuViewModel.class);
         initViewPagedAndTabs();
         return view;
@@ -81,25 +77,25 @@ public class MenuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.e("menu","sunt in onViewCreated");
+        Log.e("menu", "sunt in onViewCreated");
         obsereViewModel();
     }
 
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_action_button,menu);
-        super.onCreateOptionsMenu(menu,inflater);
+        inflater.inflate(R.menu.menu_action_button, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if(item.getItemId()==R.id.logoutActionButton){
+        if (item.getItemId() == R.id.logoutActionButton) {
 
             menuViewModel.signOut();
 
 
-        }else if(item.getItemId()==R.id.cartActionButton){
+        } else if (item.getItemId() == R.id.cartActionButton) {
 
             //jump to orderActivity
         }
@@ -107,14 +103,14 @@ public class MenuFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    private void obsereViewModel(){
+    private void obsereViewModel() {
 
         menuViewModel.menuLiveData.observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                if(s.equals("OK")) {
+                if (s.equals("OK")) {
                     jumpToLogin();
-                }else{
+                } else {
 
                     alertDialogBuilder.setTitle("Something went wrong!");
 
@@ -131,7 +127,7 @@ public class MenuFragment extends Fragment {
 
     }
 
-    private void initViewPagedAndTabs(){
+    private void initViewPagedAndTabs() {
 
         tabLayout.addTab(tabLayout.newTab().setText("Food"));
 
@@ -146,7 +142,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                Log.e("tab","tab selectat"+tab.getPosition());
+                Log.e("tab", "tab selectat" + tab.getPosition());
 
             }
 
@@ -162,7 +158,6 @@ public class MenuFragment extends Fragment {
         });
 
     }
-
 
 
     private void jumpToLogin() {

@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
-@Entity(tableName = "Food")
-public class Pizza implements Serializable {
+@Entity(tableName = "Drinks")
+public class Drink implements Serializable {
 
     @ColumnInfo(name = "item_name")
     public String name;
@@ -21,17 +21,16 @@ public class Pizza implements Serializable {
     @PrimaryKey(autoGenerate = true)
     public int uuid;
 
-    public Pizza() {
 
+    public Drink() {
     }
 
-    private Pizza(String name, String imageLink, Long price, String ingredients) {
+    public Drink(String name, String imageLink, Long prince, String ingredients) {
         this.name = name;
         this.imageLink = imageLink;
-        this.price = price;
+        this.price = prince;
         this.ingredients = ingredients;
     }
-
 
     public String getName() {
         return name;
@@ -63,5 +62,13 @@ public class Pizza implements Serializable {
 
     public void setIngredients(String ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public int getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(int uuid) {
+        this.uuid = uuid;
     }
 }

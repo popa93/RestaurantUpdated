@@ -9,17 +9,17 @@ public
 class MenuViewModel extends ViewModel {
 
     FirebaseAuth authentication;
-    public MutableLiveData<String> menuLiveData=new MutableLiveData<>();
+    public MutableLiveData<String> menuLiveData = new MutableLiveData<>();
 
 
-    public void signOut(){
+    public void signOut() {
 
-        authentication=FirebaseAuth.getInstance();
+        authentication = FirebaseAuth.getInstance();
 
-        try{
+        try {
             authentication.signOut();
             menuLiveData.postValue("OK");
-        }catch (Exception e){
+        } catch (Exception e) {
 
             menuLiveData.postValue("Error");
         }

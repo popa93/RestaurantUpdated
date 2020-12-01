@@ -20,25 +20,28 @@ import java.util.Calendar;
 import java.util.List;
 
 import Util.SharedPreferencesHelper;
+import model.Drink;
 import model.ItemDao;
 import model.ItemsDatabase;
-import model.Pizza;
 
 public
-class FoodViewModel extends AndroidViewModel {
+class DrinkViewModel extends AndroidViewModel {
 
-    private ArrayList<Pizza> pizzas = new ArrayList<>();
+    public MutableLiveData<ArrayList<Drink>> drinksMutableLiveData = new MutableLiveData<>();
+
+    private FirebaseDatabase myDatabase;
+    private ArrayList<Drink> drinks = new ArrayList<>();
+
+    private AsyncTask<ArrayList<Drink>, Void, ArrayList<Drink>> insertTask;
+    private AsyncTask<Void, Void, List<Drink>> retrieveTask;
     Calendar calendar = Calendar.getInstance();
     private int day;
     private int dateResult;
     private long refreshTime = 5 * 1000 * 1000 * 1000L; // 5 sec(30 min) interval
     private SharedPreferencesHelper prefHelper = SharedPreferencesHelper.getInstance(getApplication());
-    public MutableLiveData<ArrayList<Pizza>> pizzaMutableLiveData = new MutableLiveData<>();
-    private FirebaseDatabase myDatabase;
-    private AsyncTask<ArrayList<Pizza>, Void, ArrayList<Pizza>> insertTask;
-    private AsyncTask<Void, Void, List<Pizza>> retrieveTask;
 
-    public FoodViewModel(@NonNull Application application) {
+
+    public DrinkViewModel(@NonNull Application application) {
         super(application);
     }
 
@@ -52,32 +55,29 @@ class FoodViewModel extends AndroidViewModel {
             fetchFromDatabase();
         } else {
 
-            getPizzas();
+            getDrinks();
         }
     }
 
 
-    public void getPizzas() {
+    public void getDrinks() {
         Log.e("apel", "apel dld");
         myDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = myDatabase.getReference("Menu");
+        DatabaseReference databaseReference = myDatabase.getReference("Drinks");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (pizzas.size() >= 6)
-                    pizzas.clear();
-
+                if (drinks.size() >= 6)
+                    drinks.clear();
                 for (DataSnapshot child : snapshot.getChildren()) {
 
-                    pizzas.add(child.getValue(Pizza.class));
+                    drinks.add(child.getValue(Drink.class));
 
                 }
-
-
-                // pizzaMutableLiveData.postValue(pizzas);
-                insertTask = new InsertFoodTask();
-                insertTask.execute(pizzas);
+                drinksMutableLiveData.postValue(drinks);
+                insertTask = new InsertDrinkTask();
+                insertTask.execute(drinks);
                 Toast.makeText(getApplication(), "item retrieved from backend", Toast.LENGTH_SHORT).show();
             }
 
@@ -89,7 +89,7 @@ class FoodViewModel extends AndroidViewModel {
 
     }
 
-    private void setDate() {
+    private void setDate() {   //no need here because the date will be set by food calls
 
         day = calendar.get(Calendar.DATE);
     }
@@ -102,26 +102,27 @@ class FoodViewModel extends AndroidViewModel {
 
     private void fetchFromDatabase() {
 
-        retrieveTask = new RetrieveItemsTask();
+        retrieveTask = new RetrieveDrinksTask();
         retrieveTask.execute();
     }
 
-    private void itemsRetrieved(ArrayList<Pizza> foodList) {
 
-        pizzaMutableLiveData.setValue(foodList);
+    private void itemsRetrieved(ArrayList<Drink> drinkList) {
+
+        drinksMutableLiveData.setValue(drinkList);
     }
 
-    private class InsertFoodTask extends AsyncTask<ArrayList<Pizza>, Void, ArrayList<Pizza>> {
+    private class InsertDrinkTask extends AsyncTask<ArrayList<Drink>, Void, ArrayList<Drink>> {
 
 
         @Override
-        protected ArrayList<Pizza> doInBackground(ArrayList<Pizza>... arrayLists) {
-            ArrayList<Pizza> list = arrayLists[0];
+        protected ArrayList<Drink> doInBackground(ArrayList<Drink>... arrayLists) {
+            ArrayList<Drink> list = arrayLists[0];
             ItemDao itemDao = ItemsDatabase.getInstance(getApplication()).itemDao();
-            itemDao.deleteAllFood();
+            itemDao.deleteAllDrinks();
 
 
-            List<Long> result = itemDao.insertAll(list);    //modified parameter in itemDaot from ... to ArrayList
+            List<Long> result = itemDao.insertAllDrinks(list);
 
             int i = 0;
             while (i < list.size()) {
@@ -132,10 +133,11 @@ class FoodViewModel extends AndroidViewModel {
             return list;
         }
 
-        @Override
-        protected void onPostExecute(ArrayList<Pizza> pizzas) { // will be executed on foreground thread
 
-            itemsRetrieved(pizzas);
+        @Override
+        protected void onPostExecute(ArrayList<Drink> drinks) { // will be executed on foreground thread
+
+            itemsRetrieved(drinks);
             prefHelper.saveUpdateTime(System.nanoTime());
             setDate();
             prefHelper.setLastBackendDownloadDate(day);
@@ -143,22 +145,21 @@ class FoodViewModel extends AndroidViewModel {
         }
     }
 
-    private class RetrieveItemsTask extends AsyncTask<Void, Void, List<Pizza>> {
+    private class RetrieveDrinksTask extends AsyncTask<Void, Void, List<Drink>> {
         @Override
-        protected List<Pizza> doInBackground(Void... voids) {
+        protected List<Drink> doInBackground(Void... voids) {
 
 
-            return ItemsDatabase.getInstance(getApplication()).itemDao().getAllItems();
+            return ItemsDatabase.getInstance(getApplication()).itemDao().getAllDrinksItems();
         }
 
         @Override
-        protected void onPostExecute(List<Pizza> pizzas) {
-            ArrayList<Pizza> retrived = new ArrayList<>(pizzas);
+        protected void onPostExecute(List<Drink> drinks) {
+            ArrayList<Drink> retrived = new ArrayList<>(drinks);
             itemsRetrieved(retrived);
-            Toast.makeText(getApplication(), "Items retrieved from database", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplication(), "Drinks retrieved from database", Toast.LENGTH_SHORT).show();
         }
     }
 
+
 }
-
-

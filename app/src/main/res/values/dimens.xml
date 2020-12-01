@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="card_view_layout_height">200dp</dimen>
+    <dimen name="card_view_layout_margin">5dp</dimen>
+    <dimen name="card_view_corner_radius">4dp</dimen>
+    <dimen name="card_view_card_elevation">2dp</dimen>
+    <integer name="card_view_image_view_layout_weight">100</integer>
+    <dimen   name="card_view_text_view_text_size">20sp</dimen>
+
+    <dimen name="fragment_menu_tab_indicator_height">6dp</dimen>
+
+    <dimen name="map_frag_layout_width">325dp</dimen>
+    <dimen name="map_frag_layout_height">206dp</dimen>
+    <dimen name="map_frag_layout_margin_start">40dp</dimen>
+    <dimen name="map_frag_layout_margin_top">36dp</dimen>
+
+
     <dimen name="scrollView_marginStart">16dp</dimen>
     <dimen name="scrollView_marginTop">35dp</dimen>
     <dimen name="scrollView_marginEnd">16dp</dimen>

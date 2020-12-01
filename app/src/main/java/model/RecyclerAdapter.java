@@ -27,26 +27,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
 
     ArrayList<Pizza> pizzaList;
-    // ArrayList<Drink> drinkList;
+    ArrayList<Drink> drinkList;
 
-    // private List<Drink> drinkList;
-
-   /* public RecyclerAdapter(int[] imageID,String[] captions,String fragName,String[] prices) {
-        this.imageIds=imageID;
-        this.captions=captions;
-        this.fragName=fragName;
-        this.prices=prices;
-    }*/
 
     public RecyclerAdapter(String fragName, ArrayList<Pizza> pizzaList) {
         this.fragName = fragName;
         this.pizzaList = pizzaList;
     }
 
-   /* public RecyclerAdapter(String fragName, ArrayList<Drink> drinkList,String troll) {
+    public RecyclerAdapter(String fragName, ArrayList<Drink> drinkList, String troll) {
         this.fragName = fragName;
         this.drinkList = drinkList;
-    }*/
+    }
 
     public void setClickListener(IMenuClickListener clickListener) {
 
@@ -83,33 +75,32 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
             holder.cardView.setOnClickListener(holder);
 
-        } else {
-           /* CardView cardView = holder.cardView;
-            ImageView imageView = cardView.findViewById(R.id.info_image);
-            Drawable drawable = ContextCompat.getDrawable(cardView.getContext(), drinkList.get(position).getImageResourceId());
-            imageView.setImageDrawable(drawable);
-            imageView.setContentDescription(drinkList.get(position).getName());
+        } else if (fragName.equals("Drink")) {
+            CardView cardView = holder.cardView;
 
-            holder.cardView.setTag(Drink.drinks[position]);
+            ImageView imageView = cardView.findViewById(R.id.info_image);
+            Glide.with(imageView.getContext()).load(drinkList.get(position).getImageLink()).error(R.mipmap.ic_launcher).into(imageView);
+
+            holder.cardView.setTag(drinkList.get(position));
 
             TextView textView = cardView.findViewById(R.id.productName);
             textView.setText(drinkList.get(position).getName());
 
-            TextView textView1 = cardView.findViewById(R.id.producPrice);
-            textView1.setText(drinkList.get(position).getPrice());
-*/
+            TextView textView1 = cardView.findViewById(R.id.productPrice);
+            textView1.setText(drinkList.get(position).getPrice().toString());
+
             holder.cardView.setOnClickListener(holder);
         }
     }
 
     @Override
-    public int getItemCount() { //total number of items from the list. va trb sa calculez cate iteme sunt in total la food si drink si apoi
-        //sa trimit aici numarul lor
+    public int getItemCount() {
+
         if (fragName.equals("Food")) {
             return pizzaList.size();
-        }/*else if (fragName.equals("Drink")){
-            return Drink.drinks.length;   //aici ar veni echivalentul pentru drinks
-        }*/
+        } else if (fragName.equals("Drink")) {
+            return drinkList.size();
+        }
         return 0;
     }
 
@@ -137,8 +128,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
             if (fragName.equals("Food"))
                 clickListener.onItemClick((Pizza) view.getTag());
-            /*else
-                clickListener.onItemClick((Drink)view.getTag());*/
+            else
+                clickListener.onItemClick((Drink) view.getTag());
             Log.e("tag", "sunt in clasa MyViewHolder onClick");
 
         }

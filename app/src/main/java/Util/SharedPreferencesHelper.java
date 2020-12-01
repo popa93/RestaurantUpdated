@@ -35,14 +35,14 @@ class SharedPreferencesHelper {
         return prefs.getLong(PREF_TIME, 0);
     }
 
-    public void setLastBackendDownloadDate(int day){
-        prefs.edit().putInt(PREF_DATE,day).apply();
+    public void setLastBackendDownloadDate(int day) {
+        prefs.edit().putInt(PREF_DATE, day).apply();
 
     }
 
-    public int getLastBackendDownloadDate(){
+    public int getLastBackendDownloadDate() {
 
-        return prefs.getInt(PREF_DATE,0);
+        return prefs.getInt(PREF_DATE, 0);
     }
 
 
