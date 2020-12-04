@@ -72,8 +72,7 @@ public class DetailsMenuItemFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this,view);
-
+        ButterKnife.bind(this, view);
 
 
         pizza = (Pizza) getArguments().getSerializable("cheie");
@@ -85,24 +84,26 @@ public class DetailsMenuItemFragment extends Fragment {
         if (drink != null)
             Toast.makeText(view.getContext(), drink.getName(), Toast.LENGTH_LONG).show();
 
-        initViews(pizza,drink);
+        initViews(pizza, drink);
         floatingButtonAction();
 
     }
 
 
-
-    private void floatingButtonAction(){
+    private void floatingButtonAction() {
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(pizza!=null) {
+                if (pizza != null) {
 
-                    Toast.makeText(getActivity(),pizza.getName()+" was added to cart",Toast.LENGTH_SHORT).show();
+                    OrderFragment.orderList.add(pizza);
+                    Toast.makeText(getActivity(), pizza.getName() + " was added to cart", Toast.LENGTH_SHORT).show();
                 }
-                if(drink!=null){
+                if (drink != null) {
 
-                    Toast.makeText(getActivity(),drink.getName()+" was added to cart",Toast.LENGTH_SHORT).show();
+                    OrderFragment.orderList.add(drink);
+
+                    Toast.makeText(getActivity(), drink.getName() + " was added to cart", Toast.LENGTH_SHORT).show();
 
                     // OrderActivity.orderList.add(drink);
                 }
@@ -111,10 +112,9 @@ public class DetailsMenuItemFragment extends Fragment {
     }
 
 
+    private void initViews(Pizza pizza, Drink drink) {
 
-    private void initViews(Pizza pizza,Drink drink){
-
-        if (pizza != null){
+        if (pizza != null) {
 
             nameOfItem.setText(pizza.getName());
             quantityOfItem.setText("123");
@@ -123,14 +123,13 @@ public class DetailsMenuItemFragment extends Fragment {
             Glide.with(imageOfItem.getContext()).load(pizza.imageLink).error(R.mipmap.ic_launcher).into(imageOfItem);
         }
 
-        if (drink != null){
+        if (drink != null) {
             nameOfItem.setText(drink.getName());
             quantityOfItem.setText("123");
             priceOfItem.setText(drink.getPrice().toString());
             ingredientsOfItem.setText(drink.getIngredients());
             Glide.with(imageOfItem.getContext()).load(drink.imageLink).error(R.mipmap.ic_launcher).into(imageOfItem);
         }
-
 
 
     }
