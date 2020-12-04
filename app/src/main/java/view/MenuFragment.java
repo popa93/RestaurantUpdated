@@ -97,7 +97,7 @@ public class MenuFragment extends Fragment {
 
         } else if (item.getItemId() == R.id.cartActionButton) {
 
-            //jump to orderActivity
+            jumpToOrder();
         }
 
         return super.onOptionsItemSelected(item);
@@ -166,6 +166,13 @@ public class MenuFragment extends Fragment {
             Navigation.findNavController(getView()).navigate(action);
         }
 
+
+    }
+
+    private void jumpToOrder(){
+
+        NavDirections action=MenuFragmentDirections.actionMenuFragmentToOrderFragment();
+        Navigation.findNavController(getView()).navigate(action);
 
     }
 }

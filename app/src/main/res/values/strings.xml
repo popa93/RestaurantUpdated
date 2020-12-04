@@ -15,4 +15,6 @@
     <string name="quantityLabel">Quantity(g)</string>
     <string name="priceLabel">Price(lei)</string>
     <string name="ingredeientsLabel">Ingredients</string>
+    <string name="total">Total</string>
+    <string name="place_order">PLACE ORDER</string>
 </resources>

@@ -99,9 +99,9 @@ public class DrinkFragment extends Fragment {
 
             @Override
             public void addButtonClick(int position) {
-                // OrderActivity.orderList.add(pizzaList.get(position));
+                 OrderFragment.orderList.add(drinkList.get(position));
                 //Toast.makeText(getActivity(), Pizza.pizzas[position].getName()+" added to cart", Toast.LENGTH_SHORT).show();
-                Log.e("pizza", drinkList.get(position).getName());
+                //Log.e("pizza", drinkList.get(position).getName());
             }
 
         });

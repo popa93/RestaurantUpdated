@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_menuFragment_to_detailsMenuItemFragment4"
             app:destination="@id/detailsMenuItemFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_orderFragment"
+            app:destination="@id/orderFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsMenuItemFragment"
@@ -57,6 +60,15 @@
         tools:layout="@layout/fragment_details_menu_item" >
         <action
             android:id="@+id/action_detailsMenuItemFragment_to_menuFragment6"
+            app:destination="@id/menuFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderFragment"
+        android:name="view.OrderFragment"
+        android:label="fragment_order"
+        tools:layout="@layout/fragment_order" >
+        <action
+            android:id="@+id/action_orderFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
     </fragment>
 </navigation>
