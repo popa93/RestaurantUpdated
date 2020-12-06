@@ -98,6 +98,7 @@ public class LoginFragment extends Fragment implements OnMapReadyCallback {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                OrderFragment.orderList.clear();
                 loginViewModel.login(email.getText().toString(), pass.getText().toString());
             }
         });

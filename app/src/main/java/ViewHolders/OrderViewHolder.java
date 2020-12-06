@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantupdated.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import model.Drink;
 import model.IOrderClickListener;
 import model.Pizza;
@@ -16,16 +18,20 @@ import model.Pizza;
 public
 class OrderViewHolder extends RecyclerView.ViewHolder {
 
-    View view;
+    @BindView(R.id.imageView)
     ImageView deleteItem;
+
+    @BindView(R.id.textView)
+    TextView nameOfItem;
+
     IOrderClickListener iOrderClickListener;
 
 
     public OrderViewHolder(@NonNull View itemView, IOrderClickListener iOrderClickListener) {
         super(itemView);
+        ButterKnife.bind(this, itemView);
+
         this.iOrderClickListener = iOrderClickListener;
-        this.view = itemView;
-        deleteItem = view.findViewById(R.id.imageView);
         deleteItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -41,14 +47,12 @@ class OrderViewHolder extends RecyclerView.ViewHolder {
 
             Pizza pizza = (Pizza) item;
 
-            TextView textView = view.findViewById(R.id.textView);
-            textView.setText(pizza.getName());
+            nameOfItem.setText(pizza.getName());
 
         } else {
             Drink drink = (Drink) item;
 
-            TextView textView = view.findViewById(R.id.textView);
-            textView.setText(drink.getName());
+            nameOfItem.setText(drink.getName());
 
         }
 
