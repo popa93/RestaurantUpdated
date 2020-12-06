@@ -1,6 +1,5 @@
 package ViewHolders;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -13,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.restaurantupdated.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import model.Drink;
 import model.IMenuClickListener;
 import model.Pizza;
@@ -20,16 +21,29 @@ import model.Pizza;
 public
 class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-    private IMenuClickListener clickListener;
-    CardView cardView;
+
+    @BindView(R.id.toCartButton)
     Button button;
-    String fragName;
+
+    @BindView(R.id.info_image)
+    ImageView infoImage;
+
+    @BindView(R.id.productName)
+    TextView productName;
+
+    @BindView(R.id.productPrice)
+    TextView productPrice;
+
+    private IMenuClickListener clickListener;
+    private CardView cardView;
+    private String fragName;
 
 
     public MenuViewHolder(@NonNull CardView itemView, String fragName, IMenuClickListener iMenuClickListener) {
         super(itemView);
+        ButterKnife.bind(this, itemView);
+
         cardView = itemView;
-        button = itemView.findViewById(R.id.toCartButton);
         this.fragName = fragName;
         this.clickListener = iMenuClickListener;
 
@@ -48,34 +62,20 @@ class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
 
             Pizza pizza = (Pizza) item;
 
-            ImageView imageView = cardView.findViewById(R.id.info_image);
-            Glide.with(imageView.getContext()).load(pizza.getImageLink()).error(R.mipmap.ic_launcher).into(imageView);
-
+            Glide.with(infoImage.getContext()).load(pizza.getImageLink()).error(R.mipmap.ic_launcher).into(infoImage);
             cardView.setTag(pizza);
-
-            TextView textView = cardView.findViewById(R.id.productName);
-            textView.setText(pizza.getName());
-
-            TextView textView1 = cardView.findViewById(R.id.productPrice);
-            textView1.setText(pizza.getPrice().toString());
-
+            productName.setText(pizza.getName());
+            productPrice.setText(pizza.getPrice().toString());
 
             cardView.setOnClickListener(this);
 
         } else {
             Drink drink = (Drink) item;
 
-
-            ImageView imageView = cardView.findViewById(R.id.info_image);
-            Glide.with(imageView.getContext()).load(drink.getImageLink()).error(R.mipmap.ic_launcher).into(imageView);
-
+            Glide.with(infoImage.getContext()).load(drink.getImageLink()).error(R.mipmap.ic_launcher).into(infoImage);
             cardView.setTag(drink);
-
-            TextView textView = cardView.findViewById(R.id.productName);
-            textView.setText(drink.getName());
-
-            TextView textView1 = cardView.findViewById(R.id.productPrice);
-            textView1.setText(drink.getPrice().toString());
+            productName.setText(drink.getName());
+            productPrice.setText(drink.getPrice().toString());
 
             cardView.setOnClickListener(this);
 
@@ -90,7 +90,6 @@ class MenuViewHolder extends RecyclerView.ViewHolder implements View.OnClickList
             clickListener.onItemClick((Pizza) view.getTag());
         else
             clickListener.onItemClick((Drink) view.getTag());
-        Log.e("tag", "sunt in clasa MyViewHolder onClick");
 
     }
 
