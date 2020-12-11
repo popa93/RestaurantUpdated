@@ -49,7 +49,6 @@ public class LoginFragment extends Fragment implements OnMapReadyCallback {
     private LoginViewModel loginViewModel;
 
     private GoogleMap map;
-    // private FirebaseAuth auth;
     private AlertDialog.Builder alertDialogBuilder;
 
     public LoginFragment() {
@@ -59,9 +58,6 @@ public class LoginFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // auth = FirebaseAuth.getInstance();
-
 
         alertDialogBuilder = new AlertDialog.Builder(getActivity());
     }

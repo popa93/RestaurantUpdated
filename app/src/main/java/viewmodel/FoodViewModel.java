@@ -48,7 +48,7 @@ class FoodViewModel extends AndroidViewModel {
         long updateTime = prefHelper.getUpdateTime();
         long currentTime = System.nanoTime();
         if (updateTime != 0 && currentTime - updateTime < refreshTime && dateResult == 0) {
-
+            Log.e("util load", "load images from task");
             fetchFromDatabase();
         } else {
 
@@ -58,7 +58,6 @@ class FoodViewModel extends AndroidViewModel {
 
 
     public void getPizzas() {
-        Log.e("apel", "apel dld");
         myDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = myDatabase.getReference("Menu");
 
@@ -74,8 +73,6 @@ class FoodViewModel extends AndroidViewModel {
 
                 }
 
-
-                // pizzaMutableLiveData.postValue(pizzas);
                 insertTask = new InsertFoodTask();
                 insertTask.execute(pizzas);
                 Toast.makeText(getApplication(), "item retrieved from backend", Toast.LENGTH_SHORT).show();
@@ -155,6 +152,7 @@ class FoodViewModel extends AndroidViewModel {
         protected void onPostExecute(List<Pizza> pizzas) {
             ArrayList<Pizza> retrived = new ArrayList<>(pizzas);
             itemsRetrieved(retrived);
+
             Toast.makeText(getApplication(), "Items retrieved from database", Toast.LENGTH_SHORT).show();
         }
     }

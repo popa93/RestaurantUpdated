@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 
 @Entity(tableName = "Drinks")
-public class Drink implements Serializable {
+public class Drink implements Serializable, IMenuInterface {
 
     @ColumnInfo(name = "item_name")
     public String name;
@@ -70,5 +70,32 @@ public class Drink implements Serializable {
 
     public void setUuid(int uuid) {
         this.uuid = uuid;
+    }
+
+    @Override
+    public String itemName() {
+        return name;
+    }
+
+    @Override
+    public String imageLink() {
+        return imageLink;
+
+    }
+
+    @Override
+    public Long price() {
+        return price;
+    }
+
+    @Override
+    public int uuid() {
+        return uuid;
+    }
+
+    @Override
+    public String ingredients() {
+        return ingredients;
+
     }
 }

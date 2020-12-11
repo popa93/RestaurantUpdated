@@ -2,12 +2,11 @@ package ViewHolders;
 
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantupdated.R;
+import com.example.restaurantupdated.databinding.RecyclerOrderItemBinding;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,16 +20,14 @@ class OrderViewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.imageView)
     ImageView deleteItem;
 
-    @BindView(R.id.textView)
-    TextView nameOfItem;
-
     IOrderClickListener iOrderClickListener;
+    RecyclerOrderItemBinding itemBinding;
 
 
-    public OrderViewHolder(@NonNull View itemView, IOrderClickListener iOrderClickListener) {
-        super(itemView);
-        ButterKnife.bind(this, itemView);
-
+    public OrderViewHolder(RecyclerOrderItemBinding itemView, IOrderClickListener iOrderClickListener) {
+        super(itemView.getRoot());
+        ButterKnife.bind(this, itemView.getRoot());
+        itemBinding = itemView;
         this.iOrderClickListener = iOrderClickListener;
         deleteItem.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,13 +43,12 @@ class OrderViewHolder extends RecyclerView.ViewHolder {
         if (item instanceof Pizza) {
 
             Pizza pizza = (Pizza) item;
-
-            nameOfItem.setText(pizza.getName());
+            itemBinding.setOrderItem(pizza);
 
         } else {
-            Drink drink = (Drink) item;
 
-            nameOfItem.setText(drink.getName());
+            Drink drink = (Drink) item;
+            itemBinding.setOrderItem(drink);
 
         }
 
