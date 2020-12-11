@@ -1,52 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/card_view_layout_height"
-    android:layout_margin="@dimen/card_view_layout_margin"
-    card_view:cardCornerRadius="@dimen/card_view_corner_radius"
-    card_view:cardElevation="@dimen/card_view_card_elevation">
+<layout xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="item"
+            type="model.IMenuInterface" />
+
+        <variable
+            name="listener"
+            type="model.IItemClickListener" />
+
+    </data>
+
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="@dimen/card_view_layout_height"
+        android:layout_margin="@dimen/card_view_layout_margin"
+        android:onClick="@{listener::onItemClicked}"
+        card_view:cardCornerRadius="@dimen/card_view_corner_radius"
+        card_view:cardElevation="@dimen/card_view_card_elevation">
 
-        <ImageView
-            android:id="@+id/info_image"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/zero_dp"
-            android:layout_weight="@integer/card_view_image_view_layout_weight"
-            android:scaleType="centerCrop" />
+            android:layout_height="match_parent"
+            android:orientation="vertical"
 
-        <TextView
-            android:id="@+id/productName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/colorAccent"
-            android:textSize="@dimen/card_view_text_view_text_size"
-            android:textStyle="bold"
+            >
 
-            />
 
-        <TextView
-            android:id="@+id/productPrice"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="@color/colorAccent"
-            android:textSize="@dimen/card_view_text_view_text_size"
-            android:textStyle="italic"
+            <TextView
+                android:id="@+id/uuid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{String.valueOf(item.uuid())}"
+                android:visibility="gone" />
 
-            />
+            <ImageView
+                android:id="@+id/info_image"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/zero_dp"
+                android:layout_weight="@integer/card_view_image_view_layout_weight"
+                android:imageUrl="@{item.imageLink()}"
+                android:scaleType="centerCrop" />
 
-        <Button
-            android:id="@+id/toCartButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAccent"
-            android:text="@string/addToCart" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/productName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorAccent"
+                android:text="@{item.itemName()}"
+                android:textSize="@dimen/card_view_text_view_text_size"
+                android:textStyle="bold"
 
-</androidx.cardview.widget.CardView>
+                />
+
+            <TextView
+                android:id="@+id/productPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/colorAccent"
+                android:text="@{item.price().toString()}"
+                android:textSize="@dimen/card_view_text_view_text_size"
+                android:textStyle="italic"
+
+                />
+
+            <Button
+                android:id="@+id/toCartButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorAccent"
+                android:onClick="@{listener::onAddToCartClick}"
+                android:text="@string/addToCart" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

@@ -45,7 +45,6 @@ public class OrderFragment extends Fragment {
     RecyclerView recyclerViewOrder;
 
     public OrderFragment() {
-
     }
 
 

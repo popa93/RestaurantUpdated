@@ -1,14 +1,15 @@
 package model;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.restaurantupdated.R;
+import com.example.restaurantupdated.databinding.RecyclerCardviewItemBinding;
+import com.example.restaurantupdated.databinding.RecyclerOrderItemBinding;
 
 import java.util.ArrayList;
 
@@ -20,9 +21,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
 
 
     private String fragName;
-    private IMenuClickListener clickListener;
     private IOrderClickListener iOrderClickListener;
-
 
     ArrayList<Pizza> pizzaList;
     ArrayList<Drink> drinkList;
@@ -46,11 +45,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
 
     }
 
-    public void setClickListener(IMenuClickListener clickListener) {
-
-        this.clickListener = clickListener;
-
-    }
 
     public void setOrderClickListener(IOrderClickListener iOrderClickListener) {
         this.iOrderClickListener = iOrderClickListener;
@@ -62,11 +56,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+
         if (fragName.equals("Food") || fragName.equals("Drink")) {
-            CardView myCardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_cardview_item, parent, false);
-            return new MenuViewHolder(myCardView, fragName, clickListener);
+
+            RecyclerCardviewItemBinding view = DataBindingUtil.inflate(inflater, R.layout.recycler_cardview_item, parent, false);
+
+            return new MenuViewHolder(view, fragName);
         } else {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_order_item, parent, false);
+            RecyclerOrderItemBinding view = DataBindingUtil.inflate(inflater, R.layout.recycler_order_item, parent, false);
+
             return new OrderViewHolder(view, iOrderClickListener);
         }
     }

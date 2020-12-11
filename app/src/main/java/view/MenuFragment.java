@@ -2,7 +2,6 @@ package view;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,35 +37,28 @@ public class MenuFragment extends Fragment {
     @BindView(R.id.tabLayout)
     TabLayout tabLayout;
 
-    //FirebaseAuth authentication;
+
     private MenuViewModel menuViewModel;
     private AlertDialog.Builder alertDialogBuilder;
 
     public MenuFragment() {
-        // Required empty public constructor
     }
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e("menu", "sunt in onCreate");
-
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         setHasOptionsMenu(true);
         alertDialogBuilder = new AlertDialog.Builder(getActivity());
-        // authentication=FirebaseAuth.getInstance();
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         actionBar.setTitle("Menu");
         actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.show();
-        Log.e("menu", "sunt in onCreateView");
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
         ButterKnife.bind(this, view);
         menuViewModel = ViewModelProviders.of(this).get(MenuViewModel.class);
@@ -77,7 +69,6 @@ public class MenuFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.e("menu", "sunt in onViewCreated");
         obsereViewModel();
     }
 
@@ -142,7 +133,6 @@ public class MenuFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
-                Log.e("tab", "tab selectat" + tab.getPosition());
 
             }
 
@@ -169,9 +159,9 @@ public class MenuFragment extends Fragment {
 
     }
 
-    private void jumpToOrder(){
+    private void jumpToOrder() {
 
-        NavDirections action=MenuFragmentDirections.actionMenuFragmentToOrderFragment();
+        NavDirections action = MenuFragmentDirections.actionMenuFragmentToOrderFragment();
         Navigation.findNavController(getView()).navigate(action);
 
     }

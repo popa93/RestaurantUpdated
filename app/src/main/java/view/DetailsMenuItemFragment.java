@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,10 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
 import com.example.restaurantupdated.R;
+import com.example.restaurantupdated.databinding.FragmentDetailsMenuItemBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import butterknife.BindView;
@@ -24,33 +24,22 @@ import model.Drink;
 import model.Pizza;
 
 
-public class DetailsMenuItemFragment extends Fragment {
-
+public class
+DetailsMenuItemFragment extends Fragment {
 
     private Pizza pizza;
     private Drink drink;
+    private FragmentDetailsMenuItemBinding bindingView;
 
-
-    @BindView(R.id.nameOfItem)
-    TextView nameOfItem;
 
     @BindView(R.id.quantityOfItem)
     TextView quantityOfItem;
-
-    @BindView(R.id.priceOfItem)
-    TextView priceOfItem;
-
-    @BindView(R.id.ingredientsOfItem)
-    TextView ingredientsOfItem;
-
-    @BindView(R.id.imageOfItem)
-    ImageView imageOfItem;
 
     @BindView(R.id.FBadProduct)
     FloatingActionButton floatingActionButton;
 
     public DetailsMenuItemFragment() {
-        // Required empty public constructor
+
     }
 
 
@@ -66,7 +55,10 @@ public class DetailsMenuItemFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        return inflater.inflate(R.layout.fragment_details_menu_item, container, false);
+        FragmentDetailsMenuItemBinding bindingView = DataBindingUtil.inflate(inflater, R.layout.fragment_details_menu_item, container, false);
+        View view = bindingView.getRoot();
+        this.bindingView = bindingView;
+        return view;
     }
 
     @Override
@@ -74,10 +66,13 @@ public class DetailsMenuItemFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
+        Object o = getArguments().getSerializable("da");
 
-        pizza = (Pizza) getArguments().getSerializable("cheie");
-        drink = (Drink) getArguments().getSerializable("cheieDrink");
-
+        if (o instanceof Pizza) {
+            pizza = (Pizza) o;
+        } else if (o instanceof Drink) {
+            drink = (Drink) o;
+        }
 
         if (pizza != null)
             Toast.makeText(view.getContext(), pizza.getName(), Toast.LENGTH_LONG).show();
@@ -105,7 +100,6 @@ public class DetailsMenuItemFragment extends Fragment {
 
                     Toast.makeText(getActivity(), drink.getName() + " was added to cart", Toast.LENGTH_SHORT).show();
 
-                    // OrderActivity.orderList.add(drink);
                 }
             }
         });
@@ -116,22 +110,17 @@ public class DetailsMenuItemFragment extends Fragment {
 
         if (pizza != null) {
 
-            nameOfItem.setText(pizza.getName());
+            bindingView.setItem(pizza);
             quantityOfItem.setText("123");
-            priceOfItem.setText(pizza.getPrice().toString());
-            ingredientsOfItem.setText(pizza.getIngredients());
-            Glide.with(imageOfItem.getContext()).load(pizza.imageLink).error(R.mipmap.ic_launcher).into(imageOfItem);
         }
 
         if (drink != null) {
-            nameOfItem.setText(drink.getName());
+            bindingView.setItem(drink);
             quantityOfItem.setText("123");
-            priceOfItem.setText(drink.getPrice().toString());
-            ingredientsOfItem.setText(drink.getIngredients());
-            Glide.with(imageOfItem.getContext()).load(drink.imageLink).error(R.mipmap.ic_launcher).into(imageOfItem);
         }
 
 
     }
+
 
 }
