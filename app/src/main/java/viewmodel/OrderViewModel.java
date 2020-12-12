@@ -11,6 +11,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import Util.Constants;
 import model.Drink;
 import model.Order;
 import model.Pizza;
@@ -29,17 +30,17 @@ class OrderViewModel extends ViewModel {
 
         String date = getDate();
         countToAt();
-        DatabaseReference databaseReference = database.getReference("Orders");
+        DatabaseReference databaseReference = database.getReference(Constants.ORDERS);
 
         try {
             databaseReference.child(dbEmail).child(String.valueOf(System.currentTimeMillis())).setValue(new Order(foodString(), drinkString(), getTotalPrice(), date));
         } catch (Exception e) {
 
-            orderLiveData.setValue("EXCEPTION");
+            orderLiveData.setValue(Constants.EXCEPTION);
             return;
         }
 
-        orderLiveData.setValue("OK");
+        orderLiveData.setValue(Constants.OK2);
 
 
     }

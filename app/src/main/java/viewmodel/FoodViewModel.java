@@ -2,7 +2,6 @@ package viewmodel;
 
 import android.app.Application;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import Util.Constants;
 import Util.SharedPreferencesHelper;
 import model.ItemDao;
 import model.ItemsDatabase;
@@ -31,7 +31,6 @@ class FoodViewModel extends AndroidViewModel {
     Calendar calendar = Calendar.getInstance();
     private int day;
     private int dateResult;
-    private long refreshTime = 5 * 1000 * 1000 * 1000L; // 5 sec(30 min) interval
     private SharedPreferencesHelper prefHelper = SharedPreferencesHelper.getInstance(getApplication());
     public MutableLiveData<ArrayList<Pizza>> pizzaMutableLiveData = new MutableLiveData<>();
     private FirebaseDatabase myDatabase;
@@ -47,8 +46,7 @@ class FoodViewModel extends AndroidViewModel {
         dateResult = checkDate();
         long updateTime = prefHelper.getUpdateTime();
         long currentTime = System.nanoTime();
-        if (updateTime != 0 && currentTime - updateTime < refreshTime && dateResult == 0) {
-            Log.e("util load", "load images from task");
+        if (updateTime != 0 && currentTime - updateTime < Constants.REFRESH_TIME && dateResult == 0) {
             fetchFromDatabase();
         } else {
 
@@ -59,7 +57,7 @@ class FoodViewModel extends AndroidViewModel {
 
     public void getPizzas() {
         myDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = myDatabase.getReference("Menu");
+        DatabaseReference databaseReference = myDatabase.getReference(Constants.MENU);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -118,7 +116,7 @@ class FoodViewModel extends AndroidViewModel {
             itemDao.deleteAllFood();
 
 
-            List<Long> result = itemDao.insertAll(list);    //modified parameter in itemDaot from ... to ArrayList
+            List<Long> result = itemDao.insertAll(list);    //modified parameter in itemDao from ... to ArrayList
 
             int i = 0;
             while (i < list.size()) {

@@ -17,6 +17,8 @@ public class Pizza implements IMenuInterface, Serializable {
     public Long price;
     @ColumnInfo(name = "ingredients")
     public String ingredients;
+    @ColumnInfo(name = "quantity")
+    public int quantity;
 
     @PrimaryKey(autoGenerate = true)
     public int uuid;
@@ -24,14 +26,6 @@ public class Pizza implements IMenuInterface, Serializable {
     public Pizza() {
 
     }
-
-    private Pizza(String name, String imageLink, Long price, String ingredients) {
-        this.name = name;
-        this.imageLink = imageLink;
-        this.price = price;
-        this.ingredients = ingredients;
-    }
-
 
     public String getName() {
         return name;
@@ -41,13 +35,6 @@ public class Pizza implements IMenuInterface, Serializable {
         this.name = name;
     }
 
-    public String getImageLink() {
-        return imageLink;
-    }
-
-    public void setImageLink(String imageLink) {
-        this.imageLink = imageLink;
-    }
 
     public Long getPrice() {
         return price;
@@ -57,16 +44,8 @@ public class Pizza implements IMenuInterface, Serializable {
         this.price = price;
     }
 
-    public String getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(String ingredients) {
-        this.ingredients = ingredients;
-    }
-
     @Override
-    public String itemName() {
+    public String getItemName() {
         return name;
     }
 
@@ -88,5 +67,10 @@ public class Pizza implements IMenuInterface, Serializable {
     @Override
     public String ingredients() {
         return ingredients;
+    }
+
+    @Override
+    public int getQuantity() {
+        return quantity;
     }
 }

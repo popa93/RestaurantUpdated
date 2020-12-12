@@ -8,7 +8,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/orderRecycler"
         android:layout_width="match_parent"
-        android:layout_height="300dp" />
+        android:layout_height="@dimen/order_frag_layout_height" />
 
     <TextView
         android:id="@+id/totalLabel"
@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/total"
-        android:textSize="35sp"
+        android:textSize="@dimen/order_frag_view_text_size"
         android:textStyle="bold" />
 
     <TextView
@@ -25,14 +25,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/total"
-        android:textSize="20sp" />
+        android:textSize="@dimen/order_frag_view_text_size2" />
 
     <Button
         android:id="@+id/place_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="@dimen/order_frag_view_layout_margin_top"
         android:text="@string/place_order" />
 
 </LinearLayout>

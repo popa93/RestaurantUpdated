@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@color/colorAccent"
-                android:text="@{item.itemName()}"
+                android:text="@{item.itemName}"
                 android:textSize="@dimen/card_view_text_view_text_size"
                 android:textStyle="bold"
 

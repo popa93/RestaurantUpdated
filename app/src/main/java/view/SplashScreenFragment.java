@@ -17,6 +17,7 @@ import androidx.navigation.Navigation;
 
 import com.example.restaurantupdated.R;
 
+import Util.Constants;
 import viewmodel.SplashScreenViewModel;
 
 
@@ -57,7 +58,7 @@ public class SplashScreenFragment extends Fragment {
 
                 splashScreenViewModel.checkUserLoginState();
             }
-        }, 1500);
+        }, Constants.DELAY_TIME);
     }
 
 
@@ -66,7 +67,7 @@ public class SplashScreenFragment extends Fragment {
         splashScreenViewModel.loginStateLiveData.observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                if (s.equals("YES")) {
+                if (s.equals(Constants.YES)) {
                     jumpToLogin();
                 } else {
                     jumpToMenu();

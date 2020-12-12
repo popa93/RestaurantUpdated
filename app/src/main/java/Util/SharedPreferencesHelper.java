@@ -7,8 +7,7 @@ import android.preference.PreferenceManager;
 public
 class SharedPreferencesHelper {
 
-    private static final String PREF_TIME = "Pref time";
-    private static final String PREF_DATE = "Pref date";
+
     private static SharedPreferencesHelper instance;
     private SharedPreferences prefs;
 
@@ -27,22 +26,22 @@ class SharedPreferencesHelper {
 
     public void saveUpdateTime(long time) {
 
-        prefs.edit().putLong(PREF_TIME, time).apply();
+        prefs.edit().putLong(Constants.PREF_TIME, time).apply();
     }
 
 
     public long getUpdateTime() {
-        return prefs.getLong(PREF_TIME, 0);
+        return prefs.getLong(Constants.PREF_TIME, 0);
     }
 
     public void setLastBackendDownloadDate(int day) {
-        prefs.edit().putInt(PREF_DATE, day).apply();
+        prefs.edit().putInt(Constants.PREF_DATE, day).apply();
 
     }
 
     public int getLastBackendDownloadDate() {
 
-        return prefs.getInt(PREF_DATE, 0);
+        return prefs.getInt(Constants.PREF_DATE, 0);
     }
 
 

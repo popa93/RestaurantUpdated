@@ -13,7 +13,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/details_frag_layout_margin_top"
         tools:context="view.DetailsMenuItemFragment">
 
 
@@ -21,7 +21,7 @@
             android:id="@+id/nameLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="@dimen/details_frag_view_layout_margin_Start"
             android:text="@string/itemNameLabel"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,8 +31,8 @@
             android:id="@+id/nameOfItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="60dp"
-            android:text="@{item.itemName()}"
+            android:layout_marginEnd="@dimen/details_frag_view_layout_margin_End"
+            android:text="@{item.itemName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -40,8 +40,8 @@
             android:id="@+id/quantityLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginStart="@dimen/details_frag_view_layout_margin_Start"
+            android:layout_marginTop="@dimen/details_frag_view_layout_margin_TOP"
             android:text="@string/quantityLabel"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,8 +51,9 @@
             android:id="@+id/quantityOfItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="60dp"
+            android:layout_marginTop="@dimen/details_frag_view_layout_margin_TOP"
+            android:layout_marginEnd="@dimen/details_frag_view_layout_margin_End"
+            android:text="@{String.valueOf(item.quantity)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameOfItem" />
 
@@ -60,8 +61,8 @@
             android:id="@+id/priceLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginStart="@dimen/details_frag_view_layout_margin_Start"
+            android:layout_marginTop="@dimen/details_frag_view_layout_margin_TOP"
             android:text="@string/priceLabel"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -71,8 +72,8 @@
             android:id="@+id/priceOfItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="60dp"
+            android:layout_marginTop="@dimen/details_frag_view_layout_margin_TOP"
+            android:layout_marginEnd="@dimen/details_frag_view_layout_margin_End"
             android:text="@{String.valueOf(item.price())}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/quantityOfItem" />
@@ -81,8 +82,8 @@
             android:id="@+id/ingredientsLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginStart="@dimen/details_frag_view_layout_margin_Start"
+            android:layout_marginTop="@dimen/details_frag_view_layout_margin_TOP"
             android:text="@string/ingredeientsLabel"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -92,8 +93,8 @@
             android:id="@+id/ingredientsOfItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="60dp"
+            android:layout_marginTop="@dimen/details_frag_view_layout_margin_TOP"
+            android:layout_marginEnd="@dimen/details_frag_view_layout_margin_End"
             android:text="@{item.ingredients()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/priceOfItem" />
@@ -101,19 +102,18 @@
         <ImageView
             android:id="@+id/imageOfItem"
             android:layout_width="match_parent"
-            android:layout_height="270dp"
-            android:layout_marginBottom="152dp"
+            android:layout_height="@dimen/details_frag_view_layout_height"
+            android:layout_marginBottom="@dimen/details_frag_view_margin_bottom"
             android:imageUrl="@{item.imageLink()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/FBadProduct"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="@dimen/details_frag_FAB_margin_bottom"
             android:src="@drawable/ic_baseline_add_shopping_cart_24add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

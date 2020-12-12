@@ -12,6 +12,7 @@ import com.example.restaurantupdated.databinding.RecyclerCardviewItemBinding;
 
 import java.io.Serializable;
 
+import Util.Constants;
 import model.Drink;
 import model.IItemClickListener;
 import model.Pizza;
@@ -59,7 +60,7 @@ class MenuViewHolder extends RecyclerView.ViewHolder implements IItemClickListen
     public void onItemClicked(View v) {
 
         Bundle bundle = new Bundle();
-        bundle.putSerializable("da", (Serializable) currentItem);
+        bundle.putSerializable(Constants.DETAILS_ITEM_KEY, (Serializable) currentItem);
         Navigation.findNavController(v).navigate(R.id.action_menuFragment_to_detailsMenuItemFragment4, bundle);
 
     }

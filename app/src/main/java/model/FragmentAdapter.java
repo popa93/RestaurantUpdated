@@ -1,7 +1,5 @@
 package model;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -24,7 +22,6 @@ class FragmentAdapter extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {
-            Log.e("adapter", "get item 0");
             foodFragment = new FoodFragment();
             return foodFragment;
         } else if (position == 1)

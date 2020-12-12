@@ -13,6 +13,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import Util.Constants;
+
 public class LoginViewModel extends AndroidViewModel {
 
     public MutableLiveData<String> firebaseUserMutableLiveData = new MutableLiveData<>();
@@ -34,7 +36,7 @@ public class LoginViewModel extends AndroidViewModel {
 
         if (email.isEmpty() || pass.isEmpty()) {
 
-            firebaseUserMutableLiveData.postValue("empty");
+            firebaseUserMutableLiveData.postValue(Constants.EMPTY);
 
         } else {
 

@@ -1,12 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="recycler_order_item_view_text_size">30sp</dimen>
+    <integer name="recycler_order_item_layout_weight">50</integer>
+    <dimen name="recycler_order_item_layout_height">40dp</dimen>
+
+    <dimen name="order_frag_layout_height">300dp</dimen>
+    <dimen name="order_frag_view_layout_margin_top">40dp</dimen>
+    <dimen name="order_frag_view_text_size">35sp</dimen>
+    <dimen name="order_frag_view_text_size2">20sp</dimen>
+
+    <dimen name="details_frag_layout_margin_top">20dp</dimen>
+    <dimen name="details_frag_view_layout_margin_Start">60dp</dimen>
+    <dimen name="details_frag_view_layout_margin_End">60dp</dimen>
+    <dimen name="details_frag_view_layout_margin_TOP">30dp</dimen>
+    <dimen name="details_frag_view_layout_height">270dp</dimen>
+    <dimen name="details_frag_view_margin_bottom">152dp</dimen>
+    <dimen name="details_frag_FAB_margin_bottom">16dp</dimen>
+
     <dimen name="card_view_layout_height">200dp</dimen>
     <dimen name="card_view_layout_margin">5dp</dimen>
     <dimen name="card_view_corner_radius">4dp</dimen>
     <dimen name="card_view_card_elevation">2dp</dimen>
     <integer name="card_view_image_view_layout_weight">100</integer>
-    <dimen   name="card_view_text_view_text_size">20sp</dimen>
+    <dimen name="card_view_text_view_text_size">20sp</dimen>
 
     <dimen name="fragment_menu_tab_indicator_height">6dp</dimen>
 

@@ -17,6 +17,7 @@ import com.example.restaurantupdated.R;
 
 import java.util.ArrayList;
 
+import Util.Constants;
 import model.Pizza;
 import model.RecyclerAdapter;
 import viewmodel.FoodViewModel;
@@ -79,6 +80,6 @@ public class FoodFragment extends Fragment {
 
     @Override
     public String toString() {
-        return "Food";
+        return Constants.FOOD;
     }
 }

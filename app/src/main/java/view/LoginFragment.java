@@ -26,6 +26,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import Util.Constants;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import viewmodel.LoginViewModel;
@@ -100,6 +101,12 @@ public class LoginFragment extends Fragment implements OnMapReadyCallback {
         });
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        email.setText("");
+        pass.setText("");
+    }
 
     private void observeViewModel() {
 
@@ -107,11 +114,11 @@ public class LoginFragment extends Fragment implements OnMapReadyCallback {
             @Override
             public void onChanged(String firebaseUserEmail) {
                 if (firebaseUserEmail != null) {
-                    if (firebaseUserEmail.equals("empty")) {
+                    if (firebaseUserEmail.equals(Constants.EMPTY)) {
 
-                        alertDialogBuilder.setTitle("Email or password field is empty");
+                        alertDialogBuilder.setTitle(Constants.EMPTY_FIELDS);
 
-                        alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        alertDialogBuilder.setPositiveButton(Constants.OK, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 dialogInterface.cancel();
@@ -128,8 +135,8 @@ public class LoginFragment extends Fragment implements OnMapReadyCallback {
 
                 } else if (firebaseUserEmail == null) {
 
-                    alertDialogBuilder.setTitle("task is not succesful");
-                    alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    alertDialogBuilder.setTitle(Constants.TASK_NOT_SUCCESSFUL);
+                    alertDialogBuilder.setPositiveButton(Constants.OK, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.cancel();
@@ -161,20 +168,14 @@ public class LoginFragment extends Fragment implements OnMapReadyCallback {
             Navigation.findNavController(getView()).navigate(action);
         }
 
-        /*NavDirections action = LoginFragmentDirections.actionLoginFragmentToFoodFragment();
-        if (getView() != null) {
-            Navigation.findNavController(getView()).navigate(action);
-        }*/
-
-
     }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
         map = googleMap;
         map.setMinZoomPreference(16);
-        LatLng location = new LatLng(46.547890, 24.568380);
-        map.addMarker(new MarkerOptions().position(location).title("Restaurant"));
+        LatLng location = new LatLng(Constants.LAT, Constants.LNG);
+        map.addMarker(new MarkerOptions().position(location).title(Constants.MAP_MARKER_TITLE));
         map.moveCamera(CameraUpdateFactory.newLatLng(location));
     }
 }
