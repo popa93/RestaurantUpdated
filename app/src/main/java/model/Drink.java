@@ -17,6 +17,8 @@ public class Drink implements Serializable, IMenuInterface {
     public Long price;
     @ColumnInfo(name = "ingredients")
     public String ingredients;
+    @ColumnInfo(name = "quantity")
+    public int quantity;
 
     @PrimaryKey(autoGenerate = true)
     public int uuid;
@@ -25,12 +27,6 @@ public class Drink implements Serializable, IMenuInterface {
     public Drink() {
     }
 
-    public Drink(String name, String imageLink, Long prince, String ingredients) {
-        this.name = name;
-        this.imageLink = imageLink;
-        this.price = prince;
-        this.ingredients = ingredients;
-    }
 
     public String getName() {
         return name;
@@ -38,14 +34,6 @@ public class Drink implements Serializable, IMenuInterface {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getImageLink() {
-        return imageLink;
-    }
-
-    public void setImageLink(String imageLink) {
-        this.imageLink = imageLink;
     }
 
     public Long getPrice() {
@@ -56,24 +44,9 @@ public class Drink implements Serializable, IMenuInterface {
         this.price = price;
     }
 
-    public String getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(String ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public int getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(int uuid) {
-        this.uuid = uuid;
-    }
 
     @Override
-    public String itemName() {
+    public String getItemName() {
         return name;
     }
 
@@ -97,5 +70,10 @@ public class Drink implements Serializable, IMenuInterface {
     public String ingredients() {
         return ingredients;
 
+    }
+
+    @Override
+    public int getQuantity() {
+        return quantity;
     }
 }

@@ -24,6 +24,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.restaurantupdated.R;
 import com.google.android.material.tabs.TabLayout;
 
+import Util.Constants;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import model.FragmentAdapter;
@@ -56,7 +57,7 @@ public class MenuFragment extends Fragment {
         setHasOptionsMenu(true);
         alertDialogBuilder = new AlertDialog.Builder(getActivity());
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        actionBar.setTitle("Menu");
+        actionBar.setTitle(Constants.ACTION_BAR_MENU_TITLE);
         actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.show();
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
@@ -103,9 +104,9 @@ public class MenuFragment extends Fragment {
                     jumpToLogin();
                 } else {
 
-                    alertDialogBuilder.setTitle("Something went wrong!");
+                    alertDialogBuilder.setTitle(Constants.ERROR_MSG);
 
-                    alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    alertDialogBuilder.setPositiveButton(Constants.OK, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.cancel();
@@ -120,9 +121,9 @@ public class MenuFragment extends Fragment {
 
     private void initViewPagedAndTabs() {
 
-        tabLayout.addTab(tabLayout.newTab().setText("Food"));
+        tabLayout.addTab(tabLayout.newTab().setText(Constants.FOOD));
 
-        tabLayout.addTab(tabLayout.newTab().setText("Drinks"));
+        tabLayout.addTab(tabLayout.newTab().setText(Constants.DRINKS));
 
         FragmentAdapter adapter = new FragmentAdapter(getChildFragmentManager());
 

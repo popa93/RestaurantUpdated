@@ -18,6 +18,7 @@ import com.example.restaurantupdated.R;
 
 import java.util.ArrayList;
 
+import Util.Constants;
 import model.Drink;
 import model.RecyclerAdapter;
 import viewmodel.DrinkViewModel;
@@ -36,13 +37,11 @@ public class DrinkFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e("drink", "onCreate");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.e("drink", "onCreateView");
         RecyclerView recyclerView = (RecyclerView) inflater.inflate(R.layout.fragment_drink, container, false);
 
         return recyclerView;
@@ -51,7 +50,6 @@ public class DrinkFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.e("drink", "onViewCreated");
         drinkViewModel = ViewModelProviders.of(this).get(DrinkViewModel.class);
         observeViewModel((RecyclerView) view);
         drinkViewModel.refresh();
@@ -80,7 +78,7 @@ public class DrinkFragment extends Fragment {
 
     @Override
     public String toString() {
-        return "Drink";
+        return Constants.DRINK;
     }
 
 }

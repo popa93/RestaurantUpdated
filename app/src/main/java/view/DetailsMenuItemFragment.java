@@ -18,6 +18,7 @@ import com.example.restaurantupdated.R;
 import com.example.restaurantupdated.databinding.FragmentDetailsMenuItemBinding;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import Util.Constants;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import model.Drink;
@@ -38,6 +39,9 @@ DetailsMenuItemFragment extends Fragment {
     @BindView(R.id.FBadProduct)
     FloatingActionButton floatingActionButton;
 
+    @BindView(R.id.quantityLabel)
+    TextView quantityLabel;
+
     public DetailsMenuItemFragment() {
 
     }
@@ -47,7 +51,7 @@ DetailsMenuItemFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        actionBar.setTitle("Details");
+        actionBar.setTitle(Constants.ACTION_BAR_DETAILS_TITLE);
 
     }
 
@@ -66,7 +70,7 @@ DetailsMenuItemFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
 
-        Object o = getArguments().getSerializable("da");
+        Object o = getArguments().getSerializable(Constants.DETAILS_ITEM_KEY);
 
         if (o instanceof Pizza) {
             pizza = (Pizza) o;
@@ -92,14 +96,10 @@ DetailsMenuItemFragment extends Fragment {
                 if (pizza != null) {
 
                     OrderFragment.orderList.add(pizza);
-                    Toast.makeText(getActivity(), pizza.getName() + " was added to cart", Toast.LENGTH_SHORT).show();
                 }
                 if (drink != null) {
 
                     OrderFragment.orderList.add(drink);
-
-                    Toast.makeText(getActivity(), drink.getName() + " was added to cart", Toast.LENGTH_SHORT).show();
-
                 }
             }
         });
@@ -111,12 +111,12 @@ DetailsMenuItemFragment extends Fragment {
         if (pizza != null) {
 
             bindingView.setItem(pizza);
-            quantityOfItem.setText("123");
         }
 
         if (drink != null) {
+
+            quantityLabel.setText("Quantity(ml)");
             bindingView.setItem(drink);
-            quantityOfItem.setText("123");
         }
 
 

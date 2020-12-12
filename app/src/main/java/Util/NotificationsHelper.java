@@ -20,7 +20,7 @@ import view.OrderFragment;
 public
 class NotificationsHelper {
 
-    private static final String CHANNEL_ID = "Restaurant channel id";
+
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     Context context;
     String minutesToWait;
@@ -32,7 +32,7 @@ class NotificationsHelper {
     }
 
     public void createNotification() {
-        if (minutesToWait.equals("0"))
+        if (minutesToWait.equals(Constants.ZERO))
             return;
         createNotificationChannel();
 
@@ -40,10 +40,10 @@ class NotificationsHelper {
         //flags?
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
         //image?
-        Notification notification = new NotificationCompat.Builder(context, CHANNEL_ID)
+        Notification notification = new NotificationCompat.Builder(context, Constants.CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle("Thank you " + user.getEmail() + "!")
-                .setContentText("Yor order will be at your table in " + minutesToWait + " min")
+                .setContentTitle(Constants.THANK_YOU + user.getEmail() + Constants.EXCLAMATION)
+                .setContentText(Constants.ANNOUNCEMENT + minutesToWait + Constants.MIN)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(false)
                 .build();
@@ -55,8 +55,8 @@ class NotificationsHelper {
     private void createNotificationChannel() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            String name = "Restaurant channel id";
-            String description = "Order wait time channel";
+            String name = Constants.CHANNEL_ID;
+            String description = Constants.CHANNEL_DESCRIPTION;
             int importance = NotificationManager.IMPORTANCE_HIGH;
             NotificationChannel channel = new NotificationChannel(name, name, importance);
             channel.setDescription(description);

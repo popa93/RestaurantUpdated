@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -19,6 +21,7 @@ import com.example.restaurantupdated.R;
 
 import java.util.ArrayList;
 
+import Util.Constants;
 import Util.NotificationsHelper;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,6 +55,8 @@ public class OrderFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         orderViewModel = ViewModelProviders.of(this).get(OrderViewModel.class);
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        actionBar.setTitle(Constants.ACTION_BAR_ORDER_TITLE);
 
     }
 
@@ -91,16 +96,16 @@ public class OrderFragment extends Fragment {
 
         int totalItems = orderList.size();
         if (orderList.size() == 0)
-            return "0";
+            return Constants.ZERO;
 
         if (totalItems <= 2)
-            return "4";
+            return Constants.FOUR;
         else if (totalItems > 2 && totalItems <= 4)
-            return "8";
+            return Constants.EIGHT;
         else if (totalItems > 4 && totalItems <= 8)
-            return "13";
+            return Constants.THIRTEEN;
         else
-            return "18";
+            return Constants.EIGHTEEN;
 
     }
 
@@ -109,11 +114,11 @@ public class OrderFragment extends Fragment {
         orderViewModel.orderLiveData.observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                if (s.equals("OK")) {
+                if (s.equals(Constants.OK2)) {
                     notificationsHelper = new NotificationsHelper(getContext(), waitTime());
                     notificationsHelper.createNotification();
                 } else {
-                    Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), Constants.ERROR_MSG, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -141,6 +146,6 @@ public class OrderFragment extends Fragment {
     @NonNull
     @Override
     public String toString() {
-        return "Order";
+        return Constants.ORDER;
     }
 }

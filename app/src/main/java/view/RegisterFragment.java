@@ -2,7 +2,6 @@ package view;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +22,7 @@ import androidx.navigation.Navigation;
 import com.example.restaurantupdated.R;
 import com.google.firebase.auth.FirebaseAuth;
 
+import Util.Constants;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import viewmodel.RegisterViewModel;
@@ -55,7 +55,7 @@ public class RegisterFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        actionBar.setTitle("Register");
+        actionBar.setTitle(Constants.ACTION_BAR_REGISTER_TITLE);
         actionBar.show();
 
         alertDialogBuilder = new AlertDialog.Builder(getActivity());
@@ -94,48 +94,47 @@ public class RegisterFragment extends Fragment {
         registerViewModel.registerLiveData.observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
-                if (s.equals("All fields must be completed")) {
-                    alertDialogBuilder.setTitle("All fields must be completed");
+                if (s.equals(Constants.COMPLETE_ALL_FIELDS)) {
+                    alertDialogBuilder.setTitle(Constants.COMPLETE_ALL_FIELDS);
 
-                    alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    alertDialogBuilder.setPositiveButton(Constants.OK, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.cancel();
                         }
                     });
 
-                } else if (s.equals("Password fields must be identical")) {
-                    alertDialogBuilder.setTitle("Password fields must be identical");
+                } else if (s.equals(Constants.IDENTICAL_PASSWORDS)) {
+                    alertDialogBuilder.setTitle(Constants.IDENTICAL_PASSWORDS);
 
-                    alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    alertDialogBuilder.setPositiveButton(Constants.OK, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.cancel();
                         }
                     });
 
-                } else if (s.equals("Email field bad format")) {
-                    alertDialogBuilder.setTitle("Email field bad format");
+                } else if (s.equals(Constants.EMAIL_BAD_FORMAT)) {
+                    alertDialogBuilder.setTitle(Constants.EMAIL_BAD_FORMAT);
 
-                    alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    alertDialogBuilder.setPositiveButton(Constants.OK, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.cancel();
                         }
                     });
 
-                } else if (s.equals("OK")) {
-                    Log.e("register", "OK");
+                } else if (s.equals(Constants.OK)) {
 
                     authentication.createUserWithEmailAndPassword(username.getText().toString(), password.getText().toString());
                     jumpToMenu();
 
 
-                } else if (s.equals("Password must contain at least 6 characters")) {
+                } else if (s.equals(Constants.PASSWORD_MIN_CHARACTERS)) {
 
-                    alertDialogBuilder.setTitle("Password must contain at least 6 characters");
+                    alertDialogBuilder.setTitle(Constants.PASSWORD_MIN_CHARACTERS);
 
-                    alertDialogBuilder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    alertDialogBuilder.setPositiveButton(Constants.OK, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             dialogInterface.cancel();

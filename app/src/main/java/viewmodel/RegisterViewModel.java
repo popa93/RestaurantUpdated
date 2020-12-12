@@ -8,11 +8,12 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import Util.Constants;
+
 public
 class RegisterViewModel extends AndroidViewModel {
 
     public MutableLiveData<String> registerLiveData = new MutableLiveData<>();
-    String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
     private FirebaseAuth authentication;
 
     public RegisterViewModel(@NonNull Application application) {
@@ -23,14 +24,14 @@ class RegisterViewModel extends AndroidViewModel {
 
         if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
 
-            registerLiveData.postValue("All fields must be completed");
+            registerLiveData.postValue(Constants.COMPLETE_ALL_FIELDS);
 
         } else if (!(password.equals(confirmPassword))) {
 
-            registerLiveData.postValue("Password fields must be identical");
-        } else if (!(email.matches(emailPattern))) {
+            registerLiveData.postValue(Constants.IDENTICAL_PASSWORDS);
+        } else if (!(email.matches(Constants.EMAIL_PATTERN))) {
 
-            registerLiveData.postValue("Email field bad format");
+            registerLiveData.postValue(Constants.EMAIL_BAD_FORMAT);
         } else {
             authentication = FirebaseAuth.getInstance();
 
@@ -40,10 +41,10 @@ class RegisterViewModel extends AndroidViewModel {
             if (letterCountPass >= 6) {
                 authentication.createUserWithEmailAndPassword(email, password);
 
-                registerLiveData.postValue("OK");
+                registerLiveData.postValue(Constants.OK);
             } else {
 
-                registerLiveData.postValue("Password must contain at least 6 characters");
+                registerLiveData.postValue(Constants.PASSWORD_MIN_CHARACTERS);
 
             }
         }

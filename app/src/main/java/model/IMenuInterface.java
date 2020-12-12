@@ -3,7 +3,7 @@ package model;
 
 public interface IMenuInterface {
 
-    String itemName();
+    String getItemName();
 
     String imageLink();
 
@@ -12,4 +12,6 @@ public interface IMenuInterface {
     int uuid();
 
     String ingredients();
+
+    int getQuantity();
 }

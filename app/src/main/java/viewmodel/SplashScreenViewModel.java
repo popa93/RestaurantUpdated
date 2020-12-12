@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import Util.Constants;
+
 public
 class SplashScreenViewModel extends ViewModel {
 
@@ -16,7 +18,7 @@ class SplashScreenViewModel extends ViewModel {
     public void checkUserLoginState() {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-        String result = user == null ? "YES" : "NO";
+        String result = user == null ? Constants.YES : Constants.NO;
 
         loginStateLiveData.postValue(result);
 

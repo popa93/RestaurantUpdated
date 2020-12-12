@@ -13,6 +13,7 @@ import com.example.restaurantupdated.databinding.RecyclerOrderItemBinding;
 
 import java.util.ArrayList;
 
+import Util.Constants;
 import ViewHolders.MenuViewHolder;
 import ViewHolders.OrderViewHolder;
 import view.OrderFragment;
@@ -58,7 +59,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
 
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
 
-        if (fragName.equals("Food") || fragName.equals("Drink")) {
+        if (fragName.equals(Constants.FOOD) || fragName.equals(Constants.DRINK)) {
 
             RecyclerCardviewItemBinding view = DataBindingUtil.inflate(inflater, R.layout.recycler_cardview_item, parent, false);
 
@@ -74,13 +75,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {      //adds the data to the card views
 
 
-        if (fragName.equals("Food")) {
+        if (fragName.equals(Constants.FOOD)) {
             ((MenuViewHolder) holder).bind(pizzaList.get(position));
 
-        } else if (fragName.equals("Drink")) {
+        } else if (fragName.equals(Constants.DRINK)) {
             ((MenuViewHolder) holder).bind(drinkList.get(position));
 
-        } else if (fragName.equals("Order")) {
+        } else if (fragName.equals(Constants.ORDER)) {
 
             ((OrderViewHolder) holder).bind(orderList.get(position));
         }
@@ -90,9 +91,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
     @Override
     public int getItemCount() {
 
-        if (fragName.equals("Food")) {
+        if (fragName.equals(Constants.FOOD)) {
             return pizzaList.size();
-        } else if (fragName.equals("Drink")) {
+        } else if (fragName.equals(Constants.DRINK)) {
             return drinkList.size();
         } else {
             return OrderFragment.orderList.size();

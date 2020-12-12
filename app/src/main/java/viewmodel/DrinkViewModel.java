@@ -2,7 +2,6 @@ package viewmodel;
 
 import android.app.Application;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+import Util.Constants;
 import Util.SharedPreferencesHelper;
 import model.Drink;
 import model.ItemDao;
@@ -31,13 +31,12 @@ class DrinkViewModel extends AndroidViewModel {
 
     private FirebaseDatabase myDatabase;
     private ArrayList<Drink> drinks = new ArrayList<>();
-
     private AsyncTask<ArrayList<Drink>, Void, ArrayList<Drink>> insertTask;
     private AsyncTask<Void, Void, List<Drink>> retrieveTask;
-    Calendar calendar = Calendar.getInstance();
+    private Calendar calendar = Calendar.getInstance();
     private int day;
     private int dateResult;
-    private long refreshTime = 5 * 1000 * 1000 * 1000L; // 5 sec(30 min) interval
+
     private SharedPreferencesHelper prefHelper = SharedPreferencesHelper.getInstance(getApplication());
 
 
@@ -50,7 +49,7 @@ class DrinkViewModel extends AndroidViewModel {
         dateResult = checkDate();
         long updateTime = prefHelper.getUpdateTime();
         long currentTime = System.nanoTime();
-        if (updateTime != 0 && currentTime - updateTime < refreshTime && dateResult == 0) {
+        if (updateTime != 0 && currentTime - updateTime < Constants.REFRESH_TIME && dateResult == 0) {
 
             fetchFromDatabase();
         } else {
@@ -61,9 +60,8 @@ class DrinkViewModel extends AndroidViewModel {
 
 
     public void getDrinks() {
-        Log.e("apel", "apel dld");
         myDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = myDatabase.getReference("Drinks");
+        DatabaseReference databaseReference = myDatabase.getReference(Constants.DRINKS);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
