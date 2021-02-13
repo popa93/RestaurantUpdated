@@ -23,10 +23,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
 
     private String fragName;
     private IOrderClickListener iOrderClickListener;
+    private ICheckedOrderListener checkedOrderListener;
+    private IExtraInfoOrderClick extraInfoOrderClick;
+
 
     ArrayList<Pizza> pizzaList;
     ArrayList<Drink> drinkList;
     ArrayList<Object> orderList;
+    ArrayList<Order> kitchenList;
 
 
     public RecyclerAdapter(String fragName, ArrayList<Pizza> pizzaList) {
@@ -46,10 +50,24 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
 
     }
 
+    public RecyclerAdapter(String fragName, ArrayList<Order> kitchenList, boolean troll) {
+        this.fragName = fragName;
+        this.kitchenList = kitchenList;
+
+    }
+
 
     public void setOrderClickListener(IOrderClickListener iOrderClickListener) {
         this.iOrderClickListener = iOrderClickListener;
 
+    }
+
+    public void setCheckedOrderListener(ICheckedOrderListener checkedOrderListener) {
+        this.checkedOrderListener = checkedOrderListener;
+    }
+
+    public void setExtraInfoOrderClick(IExtraInfoOrderClick extraInfoOrderClick) {
+        this.extraInfoOrderClick = extraInfoOrderClick;
     }
 
 
@@ -62,11 +80,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
         if (fragName.equals(Constants.FOOD) || fragName.equals(Constants.DRINK)) {
 
             RecyclerCardviewItemBinding view = DataBindingUtil.inflate(inflater, R.layout.recycler_cardview_item, parent, false);
-
             return new MenuViewHolder(view, fragName);
-        } else {
-            RecyclerOrderItemBinding view = DataBindingUtil.inflate(inflater, R.layout.recycler_order_item, parent, false);
 
+        } else if (fragName.equals(Constants.KITCHEN)) {
+
+            RecyclerOrderItemBinding view = DataBindingUtil.inflate(inflater, R.layout.recycler_order_item, parent, false);
+            return new OrderViewHolder(view, checkedOrderListener, extraInfoOrderClick);
+
+        } else {
+
+            RecyclerOrderItemBinding view = DataBindingUtil.inflate(inflater, R.layout.recycler_order_item, parent, false);
             return new OrderViewHolder(view, iOrderClickListener);
         }
     }
@@ -84,6 +107,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
         } else if (fragName.equals(Constants.ORDER)) {
 
             ((OrderViewHolder) holder).bind(orderList.get(position));
+        } else if (fragName.equals(Constants.KITCHEN)) {
+            ((OrderViewHolder) holder).bind(kitchenList.get(position));
         }
 
     }
@@ -95,6 +120,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
             return pizzaList.size();
         } else if (fragName.equals(Constants.DRINK)) {
             return drinkList.size();
+        } else if (fragName.equals(Constants.KITCHEN)) {
+            return kitchenList.size();
         } else {
             return OrderFragment.orderList.size();
         }

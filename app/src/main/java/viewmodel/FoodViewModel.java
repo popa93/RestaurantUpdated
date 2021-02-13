@@ -55,7 +55,7 @@ class FoodViewModel extends AndroidViewModel {
     }
 
 
-    public void getPizzas() {
+    private void getPizzas() {
         myDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = myDatabase.getReference(Constants.MENU);
 

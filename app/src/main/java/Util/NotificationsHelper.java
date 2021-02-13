@@ -42,7 +42,7 @@ class NotificationsHelper {
         //image?
         Notification notification = new NotificationCompat.Builder(context, Constants.CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
-                .setContentTitle(Constants.THANK_YOU + user.getEmail() + Constants.EXCLAMATION)
+                .setContentTitle(Constants.THANK_YOU + Constants.EXCLAMATION)
                 .setContentText(Constants.ANNOUNCEMENT + minutesToWait + Constants.MIN)
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(false)

@@ -3,14 +3,14 @@ package Util;
 public
 class Constants {
 
-    public static final String CREATE_DRINKS_TABLE="CREATE TABLE IF NOT EXISTS 'Drinks' ( 'uuid' integer primary key autoincrement not null ,'image_link' TEXT,'item_name' TEXT,'price' integer,'ingredients' TEXT)";
-    public static final String FOOD_TABLE_ADD_QUANTITY_COLUMN="ALTER TABLE 'Food' ADD COLUMN quantity integer not null default 0";
-    public static final String DRINKS_TABLE_ADD_QUANTITY_COLUMN="ALTER TABLE 'Drinks' ADD COLUMN quantity integer not null default 0";
-    public static final String DATABASE_NAME="itemsDatabase";
-    public static final String FOOD="Food";
-    public static final String DRINK="Drink";
-    public static final String DRINKS="Drinks";
-    public static final String ORDER="Order";
+    public static final String CREATE_DRINKS_TABLE = "CREATE TABLE IF NOT EXISTS 'Drinks' ( 'uuid' integer primary key autoincrement not null ,'image_link' TEXT,'item_name' TEXT,'price' integer,'ingredients' TEXT)";
+    public static final String FOOD_TABLE_ADD_QUANTITY_COLUMN = "ALTER TABLE 'Food' ADD COLUMN quantity integer not null default 0";
+    public static final String DRINKS_TABLE_ADD_QUANTITY_COLUMN = "ALTER TABLE 'Drinks' ADD COLUMN quantity integer not null default 0";
+    public static final String DATABASE_NAME = "itemsDatabase";
+    public static final String FOOD = "Food";
+    public static final String DRINK = "Drink";
+    public static final String DRINKS = "Drinks";
+    public static final String ORDER = "Order";
     public static final String CHANNEL_ID = "Restaurant channel id";
     public static final String ZERO = "0";
     public static final String THANK_YOU = "Thank you ";
@@ -47,9 +47,29 @@ class Constants {
     public static final String ORDERS = "Orders";
     public static final String EXCEPTION = "EXCEPTION";
     public static final String EMAIL_PATTERN = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    public static  long REFRESH_TIME = 5 * 1000 * 1000 * 1000L; // 5 sec(30 min) interval
-    public static double  LAT = 46.547890;
-    public static double  LNG = 24.568380;
-    public static long  DELAY_TIME = 1500;
+    public static final String DATE_FORMAT = "dd/M//yyyy hh:mm:ss";
+    public static final String DATE_FORMAT_DMY = "ddMyyyy";
+    public static final String DATE_FORMAT_H = "hh:mm:ss";
+    public static final String CLIENT_THEME = "client";
+    public static final String KITCHEN_THEME = "kitchen";
+    public static final String ADMIN_THEME = "admin";
+    public static final String NO_THEME = "notheme";
+    public static final String LEI = " lei";
+    public static final String QUANTITY = "Quantity(ml)";
+    public static final String ORDER_ERROR = "Something went wrong ordering, please report to restaurant manager";
+    public static final String DEVICE_EMUI = "868757046395816"; //for more devices all emuis should be listen
+    public static final String KITCHEN = "Kitchen";
+    public static final String DATE = "date";
+    public static final String TOTAL = "total";
+    public static final String REMARKS = "remarks";
+    public static final String FOOD_NODE = "food";
+    public static final String DRINK_NODE = "drink";
+    public static final String ORDER_STATUS = "orderStatus";
+    public static final String TRUE = "true";
+    public static final String EXTRA_INFO = "Extra info:";
+    public static long REFRESH_TIME = 5 * 1000 * 1000 * 1000L; // 5 sec(30 min) interval
+    public static double LAT = 46.547890;
+    public static double LNG = 24.568380;
+    public static long DELAY_TIME = 1500;
 
 }

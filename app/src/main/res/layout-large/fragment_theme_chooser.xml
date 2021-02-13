@@ -1,0 +1,39 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="view.ThemeChooserFragment">
+
+    <Button
+        android:id="@+id/client"
+        android:layout_width="@dimen/theme_chooser_button_width"
+        android:layout_height="@dimen/theme_chooser_button_height"
+        android:layout_marginTop="@dimen/theme_chooser_margin_top_edge"
+        android:text="@string/client"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/kitchen"
+        android:layout_width="@dimen/theme_chooser_button_width"
+        android:layout_height="@dimen/theme_chooser_button_height"
+        android:layout_marginTop="@dimen/theme_chooser_margin_top_view"
+        android:text="@string/kitchen"
+        app:layout_constraintStart_toStartOf="@+id/client"
+        app:layout_constraintTop_toBottomOf="@+id/client" />
+
+    <Button
+        android:id="@+id/admin"
+        android:layout_width="@dimen/theme_chooser_button_width"
+        android:layout_height="@dimen/theme_chooser_button_height"
+        android:layout_marginTop="@dimen/theme_chooser_margin_top_view"
+        android:text="@string/admin"
+        app:layout_constraintStart_toStartOf="@+id/kitchen"
+        app:layout_constraintTop_toBottomOf="@+id/kitchen" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

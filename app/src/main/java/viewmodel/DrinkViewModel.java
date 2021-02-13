@@ -153,8 +153,8 @@ class DrinkViewModel extends AndroidViewModel {
 
         @Override
         protected void onPostExecute(List<Drink> drinks) {
-            ArrayList<Drink> retrived = new ArrayList<>(drinks);
-            itemsRetrieved(retrived);
+            ArrayList<Drink> retrieved = new ArrayList<>(drinks);
+            itemsRetrieved(retrieved);
             Toast.makeText(getApplication(), "Drinks retrieved from database", Toast.LENGTH_SHORT).show();
         }
     }

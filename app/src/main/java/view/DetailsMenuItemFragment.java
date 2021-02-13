@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,11 +15,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.restaurantupdated.R;
 import com.example.restaurantupdated.databinding.FragmentDetailsMenuItemBinding;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import Util.Constants;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import model.Drink;
 import model.Pizza;
 
@@ -31,16 +27,6 @@ DetailsMenuItemFragment extends Fragment {
     private Pizza pizza;
     private Drink drink;
     private FragmentDetailsMenuItemBinding bindingView;
-
-
-    @BindView(R.id.quantityOfItem)
-    TextView quantityOfItem;
-
-    @BindView(R.id.FBadProduct)
-    FloatingActionButton floatingActionButton;
-
-    @BindView(R.id.quantityLabel)
-    TextView quantityLabel;
 
     public DetailsMenuItemFragment() {
 
@@ -63,12 +49,12 @@ DetailsMenuItemFragment extends Fragment {
         View view = bindingView.getRoot();
         this.bindingView = bindingView;
         return view;
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
 
         Object o = getArguments().getSerializable(Constants.DETAILS_ITEM_KEY);
 
@@ -88,9 +74,14 @@ DetailsMenuItemFragment extends Fragment {
 
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        bindingView = null;
+    }
 
     private void floatingButtonAction() {
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+        bindingView.FBadProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (pizza != null) {
@@ -115,7 +106,7 @@ DetailsMenuItemFragment extends Fragment {
 
         if (drink != null) {
 
-            quantityLabel.setText("Quantity(ml)");
+            bindingView.quantityLabel.setText(Constants.QUANTITY);
             bindingView.setItem(drink);
         }
 

@@ -10,42 +10,20 @@
         android:name="view.SplashScreenFragment"
         tools:layout="@layout/fragment_splash_screen">
         <action
-            android:id="@+id/action_splashScreenFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
             android:id="@+id/action_splashScreenFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="view.LoginFragment"
-        tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_loginNestedFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
+            android:id="@+id/action_splashScreenFragment_to_themeChooserFragment"
+            app:destination="@id/themeChooserFragment" />
         <action
-            android:id="@+id/action_loginFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/registerFragment"
-        android:name="view.RegisterFragment"
-        tools:layout="@layout/fragment_register">
-        <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_registerFragment_to_menuFragment"
-            app:destination="@id/menuFragment" />
+            android:id="@+id/action_splashScreenFragment_to_kitchenMainFragment"
+            app:destination="@id/kitchenMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
         android:name="view.MenuFragment"
         android:label="fragment_menu"
         tools:layout="@layout/fragment_menu" >
-        <action
-            android:id="@+id/action_menuFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
         <action
             android:id="@+id/action_menuFragment_to_detailsMenuItemFragment4"
             app:destination="@id/detailsMenuItemFragment" />
@@ -71,4 +49,21 @@
             android:id="@+id/action_orderFragment_to_menuFragment"
             app:destination="@id/menuFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/themeChooserFragment"
+        android:name="view.ThemeChooserFragment"
+        android:label="fragment_theme_chooser"
+        tools:layout="@layout/fragment_theme_chooser" >
+        <action
+            android:id="@+id/action_themeChooserFragment_to_menuFragment"
+            app:destination="@id/menuFragment" />
+        <action
+            android:id="@+id/action_themeChooserFragment_to_kitchenMainFragment"
+            app:destination="@id/kitchenMainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/kitchenMainFragment"
+        android:name="view.KitchenMainFragment"
+        android:label="fragment_kitchen_main"
+        tools:layout="@layout/fragment_kitchen_main" />
 </navigation>

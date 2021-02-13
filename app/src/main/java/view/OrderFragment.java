@@ -1,30 +1,31 @@
 package view;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.restaurantupdated.R;
+import com.example.restaurantupdated.databinding.FragmentOrderBinding;
 
 import java.util.ArrayList;
 
 import Util.Constants;
 import Util.NotificationsHelper;
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import Util.SharedPreferencesHelper;
 import model.Drink;
 import model.IOrderClickListener;
 import model.Pizza;
@@ -34,18 +35,11 @@ import viewmodel.OrderViewModel;
 
 public class OrderFragment extends Fragment {
 
+    private FragmentOrderBinding binding;
+
     OrderViewModel orderViewModel;
     NotificationsHelper notificationsHelper;
     public static ArrayList<Object> orderList = new ArrayList<>();
-
-    @BindView(R.id.totalPrice)
-    TextView totalPrice;
-
-    @BindView(R.id.place_order)
-    Button placeOrderButton;
-
-    @BindView(R.id.orderRecycler)
-    RecyclerView recyclerViewOrder;
 
     public OrderFragment() {
     }
@@ -64,32 +58,37 @@ public class OrderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view;
+        binding = FragmentOrderBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
 
-        view = inflater.inflate(R.layout.fragment_order, container, false);
-        ButterKnife.bind(this, view);
-
-        recyclerViewOrder.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        binding.orderRecycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         final RecyclerAdapter recyclerOrderAdapter = new RecyclerAdapter(toString(), orderList, null, null);
-        recyclerViewOrder.setAdapter(recyclerOrderAdapter);
-        totalPrice.setText(setTotalPrice() + " lei");
+        binding.orderRecycler.setAdapter(recyclerOrderAdapter);
+        binding.totalPrice.setText(setTotalPrice() + Constants.LEI);
         recyclerOrderAdapter.setOrderClickListener(new IOrderClickListener() {
             @Override
             public void onDeleteClick(int position) {
                 orderList.remove(position);
                 recyclerOrderAdapter.notifyDataSetChanged();
-                totalPrice.setText(setTotalPrice() + " lei");
-            }
-        });
-        observeViewModel();
-        placeOrderButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                orderViewModel.placeOrder();
+                binding.totalPrice.setText(setTotalPrice() + Constants.LEI);
             }
         });
 
+        binding.placeOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                placeOrderAndNotification();
+            }
+        });
+
+        observeLiveData();
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
     String waitTime() {
@@ -109,8 +108,32 @@ public class OrderFragment extends Fragment {
 
     }
 
-    private void observeViewModel() {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) { //completeaza cazurile aici
+        switch (requestCode) {
+            case 101: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //Toast.makeText(this, "Permission granted.", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Toast.makeText(this, "Permission denied.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
 
+
+    private void placeOrderAndNotification() {  //completeaza ca sa nu trb sa apas iar,sa i ua automat dupa ce dau accept
+
+        TelephonyManager telephonyManager = (TelephonyManager) getActivity().getSystemService(Context.TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.READ_PHONE_STATE}, 101);
+            return;
+        }
+        SharedPreferencesHelper.getInstance(getContext()).setCurrentDeviceEmui(telephonyManager.getDeviceId());
+
+        orderViewModel.placeOrder(telephonyManager.getDeviceId(), binding.clientRemarks.getText().toString());
+    }
+
+    private void observeLiveData() {
         orderViewModel.orderLiveData.observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(String s) {
@@ -121,6 +144,7 @@ public class OrderFragment extends Fragment {
                     Toast.makeText(getActivity(), Constants.ERROR_MSG, Toast.LENGTH_SHORT).show();
                 }
             }
+
         });
     }
 
@@ -135,7 +159,6 @@ public class OrderFragment extends Fragment {
 
                 totalMoney += ((Drink) item).getPrice();
             }
-
 
         }
 

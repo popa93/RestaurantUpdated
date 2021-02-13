@@ -1,2 +1,3 @@
+include ':bar:bar_wear'
 include ':app'
 rootProject.name = "RestaurantUpdated"

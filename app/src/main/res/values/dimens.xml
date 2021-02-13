@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <dimen name="theme_chooser_button_width">109dp</dimen>
+    <dimen name="theme_chooser_button_height">45dp</dimen>
+    <dimen name="theme_chooser_margin_top_edge">184dp</dimen>
+    <dimen name="theme_chooser_margin_top_view">64dp</dimen>
+
     <dimen name="recycler_order_item_view_text_size">30sp</dimen>
     <integer name="recycler_order_item_layout_weight">50</integer>
     <dimen name="recycler_order_item_layout_height">40dp</dimen>
 
     <dimen name="order_frag_layout_height">300dp</dimen>
-    <dimen name="order_frag_view_layout_margin_top">40dp</dimen>
+    <dimen name="order_frag_view_layout_margin_top">20dp</dimen>
     <dimen name="order_frag_view_text_size">35sp</dimen>
     <dimen name="order_frag_view_text_size2">20sp</dimen>
 

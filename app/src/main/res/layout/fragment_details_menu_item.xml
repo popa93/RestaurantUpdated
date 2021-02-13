@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/details_frag_layout_margin_top"
+        android:focusable="true"
         tools:context="view.DetailsMenuItemFragment">
 
 
@@ -22,6 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/details_frag_view_layout_margin_Start"
+            android:focusable="false"
             android:text="@string/itemNameLabel"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,6 +34,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/details_frag_view_layout_margin_End"
+            android:focusable="false"
             android:text="@{item.itemName}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -42,6 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/details_frag_view_layout_margin_Start"
             android:layout_marginTop="@dimen/details_frag_view_layout_margin_TOP"
+            android:focusable="false"
             android:text="@string/quantityLabel"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/details_frag_view_layout_margin_TOP"
             android:layout_marginEnd="@dimen/details_frag_view_layout_margin_End"
+            android:focusable="false"
             android:text="@{String.valueOf(item.quantity)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameOfItem" />
@@ -63,6 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/details_frag_view_layout_margin_Start"
             android:layout_marginTop="@dimen/details_frag_view_layout_margin_TOP"
+            android:focusable="false"
             android:text="@string/priceLabel"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -74,6 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/details_frag_view_layout_margin_TOP"
             android:layout_marginEnd="@dimen/details_frag_view_layout_margin_End"
+            android:focusable="false"
             android:text="@{String.valueOf(item.price())}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/quantityOfItem" />
@@ -84,6 +91,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/details_frag_view_layout_margin_Start"
             android:layout_marginTop="@dimen/details_frag_view_layout_margin_TOP"
+            android:focusable="false"
             android:text="@string/ingredeientsLabel"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -95,6 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/details_frag_view_layout_margin_TOP"
             android:layout_marginEnd="@dimen/details_frag_view_layout_margin_End"
+            android:focusable="false"
             android:text="@{item.ingredients()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/priceOfItem" />
@@ -104,7 +113,9 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/details_frag_view_layout_height"
             android:layout_marginBottom="@dimen/details_frag_view_margin_bottom"
+            android:focusable="false"
             android:imageUrl="@{item.imageLink()}"
+            android:importantForAccessibility="no"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -114,6 +125,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/details_frag_FAB_margin_bottom"
+            android:contentDescription="@string/add_to_cart"
+            android:focusable="true"
             android:src="@drawable/ic_baseline_add_shopping_cart_24add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
