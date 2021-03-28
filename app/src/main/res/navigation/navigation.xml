@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_splashScreenFragment_to_kitchenMainFragment"
             app:destination="@id/kitchenMainFragment" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_adminMainFragment2"
+            app:destination="@id/adminMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
@@ -60,10 +63,18 @@
         <action
             android:id="@+id/action_themeChooserFragment_to_kitchenMainFragment"
             app:destination="@id/kitchenMainFragment" />
+        <action
+            android:id="@+id/action_themeChooserFragment_to_adminMainFragment"
+            app:destination="@id/adminMainFragment" />
     </fragment>
     <fragment
         android:id="@+id/kitchenMainFragment"
         android:name="view.KitchenMainFragment"
         android:label="fragment_kitchen_main"
         tools:layout="@layout/fragment_kitchen_main" />
+    <fragment
+        android:id="@+id/adminMainFragment"
+        android:name="view.AdminMainFragment"
+        android:label="fragment_admin_main"
+        tools:layout="@layout/fragment_admin_main" />
 </navigation>

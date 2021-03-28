@@ -88,9 +88,19 @@ public class ThemeChooserFragment extends Fragment {
             Log.d(TAG, "Kitchen theme");
             jumpToKitchen();
         } else if (theme.equals(Constants.ADMIN_THEME)) {
+            jumpToAdmin();
             Log.d(TAG, "Admin theme");
         }
     }
+
+    private void jumpToAdmin() {
+
+        NavDirections action = ThemeChooserFragmentDirections.actionThemeChooserFragmentToAdminMainFragment();
+        if (getView() != null) {
+            Navigation.findNavController(getView()).navigate(action);
+        }
+    }
+
 
     private void jumpToMenu() {
 
