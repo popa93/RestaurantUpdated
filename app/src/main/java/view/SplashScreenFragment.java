@@ -90,7 +90,7 @@ public class SplashScreenFragment extends Fragment {
     }
 
     private void jumpToAdmin() {
-
+        //just for test
         NavDirections action = SplashScreenFragmentDirections.actionSplashScreenFragmentToAdminMainFragment2();
         if (getView() != null) {
             Navigation.findNavController(getView()).navigate(action);
