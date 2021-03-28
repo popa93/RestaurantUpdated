@@ -73,7 +73,8 @@ public class SplashScreenFragment extends Fragment {
             // Log.d(TAG,"Kitchen theme");
             jumpToKitchen();
         } else {
-            Log.d(TAG, "Admin theme");
+            jumpToAdmin();
+           // Log.d(TAG, "Admin theme");
         }
     }
 
@@ -85,6 +86,14 @@ public class SplashScreenFragment extends Fragment {
             }
         } else {
             jumpToChosenTheme();
+        }
+    }
+
+    private void jumpToAdmin() {
+
+        NavDirections action = SplashScreenFragmentDirections.actionSplashScreenFragmentToAdminMainFragment2();
+        if (getView() != null) {
+            Navigation.findNavController(getView()).navigate(action);
         }
     }
 
