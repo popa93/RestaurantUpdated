@@ -93,10 +93,11 @@ public class MainActivity extends WearableActivity { //must also show the table 
                         SharedPreferencesHelper.getInstance(getApplicationContext()).setGlobalStatusCoutner(number);
                     }
 
-                    if (SharedPreferencesHelper.getInstance(getApplicationContext()).getGlobalStatusCounter() > SharedPreferencesHelper.getInstance(getApplicationContext()).getStatusModifCounter()) { //if new status update, set call to true and do not add again somethin to list(only update done not order placed)
+
+                    if (SharedPreferencesHelper.getInstance(getApplicationContext()).getGlobalStatusCounter() > SharedPreferencesHelper.getInstance(getApplicationContext()).getStatusModifCounter()) { //if new status update, set call to true and do not add again something to list(only update done not order placed)
                         int number = SharedPreferencesHelper.getInstance(getApplicationContext()).getGlobalStatusCounter();
                         SharedPreferencesHelper.getInstance(getApplicationContext()).setStatusModifCounter(number);
-                        call = true;
+                        call = true;    // if it executse this if..means no new drink order has been done but just an "oder checked" from kithen so no need to execute the if from below.(total order counts is the same,no change)
                     }
 
                 }
@@ -117,7 +118,7 @@ public class MainActivity extends WearableActivity { //must also show the table 
                         DataSnapshot order = null;
 
                         for (DataSnapshot or : snapshot.getChildren()) {
-                            order = or;
+                            order = or; //last from list is most recent drink order
                         }
 
 

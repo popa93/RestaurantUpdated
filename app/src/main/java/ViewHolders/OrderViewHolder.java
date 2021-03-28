@@ -22,6 +22,7 @@ class OrderViewHolder extends RecyclerView.ViewHolder {
     IExtraInfoOrderClick extraInfoOrderClick;
     RecyclerOrderItemBinding itemBinding;
 
+    //for kitchen
     public OrderViewHolder(RecyclerOrderItemBinding itemView, ICheckedOrderListener checkedOrderListener, IExtraInfoOrderClick extraInfoOrderClick) {
         super(itemView.getRoot());
         itemBinding = itemView;
@@ -46,7 +47,7 @@ class OrderViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-
+    //for order
     public OrderViewHolder(RecyclerOrderItemBinding itemView, IOrderClickListener iOrderClickListener) {
         super(itemView.getRoot());
         itemBinding = itemView;

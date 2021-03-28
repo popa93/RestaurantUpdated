@@ -58,7 +58,7 @@ public class KitchenViewModel extends AndroidViewModel {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if (!writeCall) {
+                if (!writeCall) {   // this if is for the first time  when OnDataChange is called(when no data was written to db). Is to avoid extra useless list entries
                     if (countCalls < snapshot.getChildrenCount()) {
                         countCalls = Math.toIntExact(snapshot.getChildrenCount());
                     }
@@ -81,7 +81,7 @@ public class KitchenViewModel extends AndroidViewModel {
 
                         Order o = order.getValue(Order.class);
                         if (!o.getFood().isEmpty()) {
-                            myList.add(order);
+                            myList.add(order); //last order is the most recent
                             clientOrderList.postValue(o);
                         }
                     }

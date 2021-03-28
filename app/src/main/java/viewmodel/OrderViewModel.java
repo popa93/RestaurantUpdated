@@ -41,7 +41,7 @@ class OrderViewModel extends AndroidViewModel {
         mainDate = getMainDate();
 
         DatabaseReference databaseReference = database.getReference(Constants.ORDERS);
-        dbRef = database.getReference(Constants.ORDERS).child(Constants.DEVICE_EMUI).child(getMainDate());
+        dbRef = database.getReference(Constants.ORDERS).child(Constants.DEVICE_EMUI).child(getMainDate()); //delete
 
         try {
             order = new HashMap<>(); //it seems that if i create Order object into setvalue will also write status field even if i do not use that constructor
