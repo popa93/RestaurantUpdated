@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/addItem"
+            android:icon="@drawable/ic_add_new_menu_item"
+            android:title="@string/add_new_menu_item" />
+        <item
+            android:id="@+id/removeItem"
+            android:icon="@drawable/ic_remove_menu_item"
+            android:title="@string/remove_menu_item" />
+        <item
+            android:id="@+id/setTimer"
+            android:icon="@drawable/ic_caching_timer"
+            android:title="@string/set_caching_timer" />
+    </group>
+
+</menu>
