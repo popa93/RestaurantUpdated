@@ -139,7 +139,7 @@ public class OrderFragment extends Fragment {
             public void onChanged(String s) {
                 if (s.equals(Constants.OK2)) {
                     notificationsHelper = new NotificationsHelper(getContext(), waitTime());
-                    notificationsHelper.createNotification();
+                    notificationsHelper.createNotification(); // here maybe create notif if chef accepts order
                 } else {
                     Toast.makeText(getActivity(), Constants.ERROR_MSG, Toast.LENGTH_SHORT).show();
                 }

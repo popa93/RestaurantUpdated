@@ -29,4 +29,9 @@
     <string name="set_caching_timer">Set caching timer</string>
     <string name="action_pannel">Action pannel</string>
     <string name="admin">Admin</string>
+    <string name="hour">h:</string>
+    <string name="minute">m:</string>
+    <string name="seconds">s:</string>
+    <string name="zero">0</string>
+    <string name="set">SET</string>
 </resources>

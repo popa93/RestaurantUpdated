@@ -45,7 +45,7 @@ class DrinkViewModel extends AndroidViewModel {
     }
 
     public void refresh() {
-
+        refreshCacheTime();
         dateResult = checkDate();
         long updateTime = prefHelper.getUpdateTime();
         long currentTime = System.nanoTime();
@@ -76,7 +76,7 @@ class DrinkViewModel extends AndroidViewModel {
                 drinksMutableLiveData.postValue(drinks);
                 insertTask = new InsertDrinkTask();
                 insertTask.execute(drinks);
-                Toast.makeText(getApplication(), "item retrieved from backend", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplication(), "item retrieved from backend drink", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -84,6 +84,27 @@ class DrinkViewModel extends AndroidViewModel {
 
             }
         });
+
+    }
+
+    public void refreshCacheTime() { //it is enough this method to be called in this class because it gets new refresh data from db and sets Constant.REFRESH_TIME and foodViewModel  will have the new refresh time also
+
+        myDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = myDatabase.getReference("CacheTime");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                Constants.REFRESH_TIME = (Long) snapshot.getValue(); //sets new cache time
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
     }
 
@@ -155,7 +176,7 @@ class DrinkViewModel extends AndroidViewModel {
         protected void onPostExecute(List<Drink> drinks) {
             ArrayList<Drink> retrieved = new ArrayList<>(drinks);
             itemsRetrieved(retrieved);
-            Toast.makeText(getApplication(), "Drinks retrieved from database", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplication(), "Drinks retrieved from database drink2", Toast.LENGTH_SHORT).show();
         }
     }
 

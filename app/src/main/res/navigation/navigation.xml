@@ -76,5 +76,14 @@
         android:id="@+id/adminMainFragment"
         android:name="view.AdminMainFragment"
         android:label="fragment_admin_main"
-        tools:layout="@layout/fragment_admin_main" />
+        tools:layout="@layout/fragment_admin_main" >
+        <action
+            android:id="@+id/action_adminMainFragment_to_adminActionsFragment"
+            app:destination="@id/adminActionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminActionsFragment"
+        android:name="view.AdminActionsFragment"
+        android:label="fragment_admin_actions"
+        tools:layout="@layout/fragment_admin_actions" />
 </navigation>

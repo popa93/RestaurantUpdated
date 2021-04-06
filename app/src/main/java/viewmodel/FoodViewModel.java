@@ -73,7 +73,7 @@ class FoodViewModel extends AndroidViewModel {
 
                 insertTask = new InsertFoodTask();
                 insertTask.execute(pizzas);
-                Toast.makeText(getApplication(), "item retrieved from backend", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplication(), "item retrieved from backend food", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -151,7 +151,7 @@ class FoodViewModel extends AndroidViewModel {
             ArrayList<Pizza> retrived = new ArrayList<>(pizzas);
             itemsRetrieved(retrived);
 
-            Toast.makeText(getApplication(), "Items retrieved from database", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplication(), "Items retrieved from database food2", Toast.LENGTH_SHORT).show();
         }
     }
 
