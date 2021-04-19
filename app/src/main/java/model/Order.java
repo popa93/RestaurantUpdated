@@ -48,6 +48,10 @@ class Order {
         return remarks;
     }
 
+    public String getTotal() {
+        return total;
+    }
+
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
     }

@@ -34,4 +34,6 @@
     <string name="seconds">s:</string>
     <string name="zero">0</string>
     <string name="set">SET</string>
+    <string name="current_day_income">Current day income</string>
+    <string name="current_month_vs_last_month">Current month vs last month</string>
 </resources>

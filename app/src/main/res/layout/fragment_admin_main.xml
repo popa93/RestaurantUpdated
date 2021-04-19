@@ -33,6 +33,37 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <TextView
+            android:id="@+id/dateLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/current_day_income"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/admin_action_layout_width2"/>
+
+        <TextView
+            android:id="@+id/todayIncome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/recycler_order_item_view_text_size"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/comparationLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/current_month_vs_last_month"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/admin_action_layout_width2"/>
+
+        <TextView
+            android:id="@+id/percentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="@dimen/recycler_order_item_view_text_size"/>
         <!-- Screen content -->
 
     </LinearLayout>

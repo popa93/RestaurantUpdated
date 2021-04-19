@@ -68,6 +68,7 @@ class Constants {
     public static final String TRUE = "true";
     public static final String EXTRA_INFO = "Extra info:";
     public static final String CACHE_TIME = "CacheTime";
+    public static final String ADD_NEW_MENU_ITEM = "Add new menu item";
     public static long REFRESH_TIME = 5 * 1000 * 1000 * 1000L; // 5 sec(30 min) interval
     public static double LAT = 46.547890;
     public static double LNG = 24.568380;
