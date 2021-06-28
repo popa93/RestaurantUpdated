@@ -47,7 +47,8 @@ public class ThemeChooserFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 clientValue = true;
-                SharedPreferencesHelper.getInstance(getContext()).setTheme(clientValue, kitchenValue, adminValue);
+                SharedPreferencesHelper.getInstance(getContext())
+                        .setTheme(clientValue, kitchenValue, adminValue);
                 jumpToChosenTheme();
             }
         });

@@ -69,6 +69,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter {
     public void setExtraInfoOrderClick(IExtraInfoOrderClick extraInfoOrderClick) {
         this.extraInfoOrderClick = extraInfoOrderClick;
     }
+    
+    public void refreshPizzaList(ArrayList<Pizza> pizzaList){
+        this.pizzaList.clear();
+        this.pizzaList.addAll(pizzaList);
+        notifyDataSetChanged();
+
+    }
 
 
     @NonNull

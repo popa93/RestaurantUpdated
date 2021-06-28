@@ -127,6 +127,7 @@
             android:layout_marginBottom="@dimen/details_frag_FAB_margin_bottom"
             android:contentDescription="@string/add_to_cart"
             android:focusable="true"
+            app:backgroundTint="@color/green"
             android:src="@drawable/ic_baseline_add_shopping_cart_24add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

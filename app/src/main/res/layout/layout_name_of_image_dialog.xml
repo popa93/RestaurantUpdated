@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/card_view_layout_height"
+    android:layout_height="@dimen/dialog_height"
+    android:background="@color/colorStrongCyan">
+
+    <EditText
+        android:id="@+id/dialogPictureName"
+        android:layout_width="@dimen/dialog_height"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dialog_edit_text_margin_top"
+        android:hint="picture name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/dialogItemNameInDb"
+        android:layout_width="@dimen/dialog_height"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dialog_edit_text_margin_top2"
+        android:hint="item name in DB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

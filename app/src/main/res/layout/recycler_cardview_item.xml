@@ -2,20 +2,16 @@
 <layout xmlns:card_view="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="item"
             type="model.IMenuInterface" />
-
         <variable
             name="listener"
             type="model.IItemClickListener" />
-
     </data>
 
-
-    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="@dimen/card_view_layout_height"
         android:layout_margin="@dimen/card_view_layout_margin"
@@ -27,10 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-
             >
-
-
             <TextView
                 android:id="@+id/uuid"
                 android:layout_width="match_parent"
@@ -45,36 +38,33 @@
                 android:layout_weight="@integer/card_view_image_view_layout_weight"
                 android:imageUrl="@{item.imageLink()}"
                 android:scaleType="centerCrop" />
-
             <TextView
                 android:id="@+id/productName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@color/colorAccent"
+                android:background="@color/green"
                 android:text="@{item.itemName}"
                 android:textSize="@dimen/card_view_text_view_text_size"
                 android:textStyle="bold"
-
+                android:textColor="@color/white"
                 />
-
             <TextView
                 android:id="@+id/productPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@color/colorAccent"
+                android:background="@color/green"
                 android:text="@{item.price().toString()}"
                 android:textSize="@dimen/card_view_text_view_text_size"
                 android:textStyle="italic"
-
+                android:textColor="@color/white"
                 />
-
             <Button
                 android:id="@+id/toCartButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorAccent"
+                android:backgroundTint="@color/green"
                 android:onClick="@{listener::onAddToCartClick}"
                 android:text="@string/addToCart" />
         </LinearLayout>

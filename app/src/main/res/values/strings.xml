@@ -25,7 +25,7 @@
     <string name="ok">Ok</string>
     <string name="extra_order_information">Extra order information</string>
     <string name="add_new_menu_item">Add new menu item</string>
-    <string name="remove_menu_item">Remove menu item</string>
+    <string name="edit_or_remove_menu_item">Edit or remove menu item</string>
     <string name="set_caching_timer">Set caching timer</string>
     <string name="action_pannel">Action pannel</string>
     <string name="admin">Admin</string>

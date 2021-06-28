@@ -15,7 +15,7 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorAccent"
+            android:background="@color/green"
             app:tabIndicatorColor="@android:color/white"
             app:tabIndicatorHeight="@dimen/fragment_menu_tab_indicator_height"
             app:tabSelectedTextColor="@android:color/white"

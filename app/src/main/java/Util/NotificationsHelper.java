@@ -35,21 +35,17 @@ class NotificationsHelper {
         if (minutesToWait.equals(Constants.ZERO))
             return;
         createNotificationChannel();
-
         Intent intent = new Intent(context, OrderFragment.class);
-        //flags?
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
-        //image?
         Notification notification = new NotificationCompat.Builder(context, Constants.CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(Constants.THANK_YOU + Constants.EXCLAMATION)
-                .setContentText(Constants.ANNOUNCEMENT + minutesToWait + Constants.MIN)
+                //.setContentText(Constants.ANNOUNCEMENT + minutesToWait + Constants.MIN)
+                .setContentText("Your order will be processed soon and brought to your table:)")
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(false)
                 .build();
-
         NotificationManagerCompat.from(context).notify(123, notification);
-
     }
 
     private void createNotificationChannel() {

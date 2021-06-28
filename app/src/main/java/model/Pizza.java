@@ -27,6 +27,14 @@ public class Pizza implements IMenuInterface, Serializable {
 
     }
 
+    public Pizza(String imageLink,String ingredients ,String name,long price, int quantity) {
+        this.name = name;
+        this.imageLink = imageLink;
+        this.price = price;
+        this.ingredients = ingredients;
+        this.quantity = quantity;
+    }
+
     public String getName() {
         return name;
     }

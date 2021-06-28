@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -86,6 +87,12 @@ public class OrderFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+       // orderViewModel.setOrderClickListener();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
@@ -140,6 +147,7 @@ public class OrderFragment extends Fragment {
                 if (s.equals(Constants.OK2)) {
                     notificationsHelper = new NotificationsHelper(getContext(), waitTime());
                     notificationsHelper.createNotification(); // here maybe create notif if chef accepts order
+                    //orderViewModel.setOrderClickListener();
                 } else {
                     Toast.makeText(getActivity(), Constants.ERROR_MSG, Toast.LENGTH_SHORT).show();
                 }

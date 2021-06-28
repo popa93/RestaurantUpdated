@@ -72,12 +72,9 @@ public class MenuFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
         if (item.getItemId() == R.id.cartActionButton) {
-
             jumpToOrder();
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -85,19 +82,16 @@ public class MenuFragment extends Fragment {
     private void initViewPagedAndTabs() {
 
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(Constants.FOOD));
-
         binding.tabLayout.addTab(binding.tabLayout.newTab().setText(Constants.DRINKS));
-
         FragmentAdapter adapter = new FragmentAdapter(getChildFragmentManager());
-
         binding.viewPager.setAdapter(adapter);
-        binding.viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.tabLayout));
+        binding.viewPager.addOnPageChangeListener(new TabLayout
+                .TabLayoutOnPageChangeListener(binding.tabLayout));
 
         binding.tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 binding.viewPager.setCurrentItem(tab.getPosition());
-
             }
 
             @Override

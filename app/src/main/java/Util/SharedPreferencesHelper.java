@@ -58,6 +58,13 @@ class SharedPreferencesHelper {
 
 
     }
+    public void firstRun(boolean firstRun) {
+        prefs.edit().putBoolean("run", true).apply();
+    }
+
+    public boolean getFirstRun() {
+        return prefs.getBoolean("run", false);
+    }
 
     public String getTheme() {
         if (!prefs.getString(Constants.CLIENT_THEME, "").equals("")) {

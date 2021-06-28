@@ -52,13 +52,12 @@ public class KitchenViewModel extends AndroidViewModel {
 
     public void fetchClientOrderList() {
 
-        dbRef.addValueEventListener(new ValueEventListener() { //every emui has a listener and all orders are added to same list(myList)
-
+        dbRef.addValueEventListener(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                if (!writeCall) {   // this if is for the first time  when OnDataChange is called(when no data was written to db). Is to avoid extra useless list entries
+                if (!writeCall) {
                     if (countCalls < snapshot.getChildrenCount()) {
                         countCalls = Math.toIntExact(snapshot.getChildrenCount());
                     }
@@ -106,8 +105,10 @@ public class KitchenViewModel extends AndroidViewModel {
         Order or = kitchenList.get(positionClicked);
         Order orderr;
         String nodeName = null;
+
         for (DataSnapshot data : myList) {
             orderr = data.getValue(Order.class);
+
 
             nodeName = data.getKey();
             if (orderr.getDate().equals(or.getDate())) {

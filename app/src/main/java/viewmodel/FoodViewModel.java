@@ -41,47 +41,36 @@ class FoodViewModel extends AndroidViewModel {
         super(application);
     }
 
-    public void refresh() {
+    private void getPizzas() {
+        myDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = myDatabase.getReference(Constants.MENU);
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (pizzas.size() >= 6)
+                    pizzas.clear();
+                for (DataSnapshot child : snapshot.getChildren()) {
+                    pizzas.add(child.getValue(Pizza.class));
+                }
+                insertTask = new InsertFoodTask();
+                insertTask.execute(pizzas);
+                Toast.makeText(getApplication(), "item retrieved from backend food", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
 
+    public void refresh() {
         dateResult = checkDate();
         long updateTime = prefHelper.getUpdateTime();
         long currentTime = System.nanoTime();
         if (updateTime != 0 && currentTime - updateTime < Constants.REFRESH_TIME && dateResult == 0) {
             fetchFromDatabase();
         } else {
-
             getPizzas();
         }
-    }
-
-
-    private void getPizzas() {
-        myDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = myDatabase.getReference(Constants.MENU);
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (pizzas.size() >= 6)
-                    pizzas.clear();
-
-                for (DataSnapshot child : snapshot.getChildren()) {
-
-                    pizzas.add(child.getValue(Pizza.class));
-
-                }
-
-                insertTask = new InsertFoodTask();
-                insertTask.execute(pizzas);
-                Toast.makeText(getApplication(), "item retrieved from backend food", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
     }
 
     private void setDate() {
@@ -102,7 +91,6 @@ class FoodViewModel extends AndroidViewModel {
     }
 
     private void itemsRetrieved(ArrayList<Pizza> foodList) {
-
         pizzaMutableLiveData.setValue(foodList);
     }
 

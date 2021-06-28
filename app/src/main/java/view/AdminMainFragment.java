@@ -65,7 +65,8 @@ public class AdminMainFragment extends Fragment {
                         jumpToAdminActionFragment("add menu");
                         //here navigate to proper fragment
                         Log.d(TAG_ADMIN_MAIN_FRAGMENT, "item 1 clicked");
-                    } else if (item.getTitle().equals("Remove menu item")) {
+                    } else if (item.getTitle().equals("Edit or remove menu item")) {
+                        jumpToAdminActionFragment("delete item");
                         Log.d(TAG_ADMIN_MAIN_FRAGMENT, "item 2 clicked");
                     } else {
                         Log.d(TAG_ADMIN_MAIN_FRAGMENT, "item 3 clicked");

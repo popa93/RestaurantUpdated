@@ -37,12 +37,11 @@ public abstract class ItemsDatabase extends RoomDatabase {
     };
 
     public static ItemsDatabase getInstance(Context context) {
-
         if (databaseInstance == null) {
-
-            databaseInstance = Room.databaseBuilder(context.getApplicationContext(), ItemsDatabase.class, Constants.DATABASE_NAME).addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4).build();
+            databaseInstance = Room.databaseBuilder(context.getApplicationContext()
+                    , ItemsDatabase.class, Constants.DATABASE_NAME)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4).build();
         }
-
         return databaseInstance;
     }
 

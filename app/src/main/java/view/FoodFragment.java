@@ -27,6 +27,7 @@ public class FoodFragment extends Fragment {
 
     FoodViewModel foodViewModel;
     private ArrayList<Pizza> pizzaList = new ArrayList<>();
+    //RecyclerAdapter recyclerAdapter;
 
 
     public FoodFragment() {
@@ -49,6 +50,7 @@ public class FoodFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+       // setupRecyclerView((RecyclerView) view);
         foodViewModel = ViewModelProviders.of(this).get(FoodViewModel.class);
         observeViewModel((RecyclerView) view);
         foodViewModel.refresh();
@@ -57,17 +59,11 @@ public class FoodFragment extends Fragment {
 
 
     private void observeViewModel(RecyclerView recyclerView) {
-
-        foodViewModel.pizzaMutableLiveData.observe(getViewLifecycleOwner(), new Observer<ArrayList<Pizza>>() {
-            @Override
-            public void onChanged(ArrayList<Pizza> pizzas) {
-                pizzaList = pizzas;
-                setupRecyclerView(recyclerView);// loading bar?
-
-            }
+        foodViewModel.pizzaMutableLiveData.observe(getViewLifecycleOwner(), pizzas -> {
+            pizzaList = pizzas;
+            //recyclerAdapter.refreshPizzaList(pizzas);
+            setupRecyclerView(recyclerView);
         });
-
-
     }
 
     private void setupRecyclerView(RecyclerView recyclerView) {

@@ -46,6 +46,7 @@ public class MainActivity extends WearableActivity { //must also show the table 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+       // SharedPreferencesHelper.getInstance(this).firstRun(true);
 
         if (!SharedPreferencesHelper.getInstance(this).getCurrentDate().equals(getMainDate())) { //set current date
             SharedPreferencesHelper.getInstance(this).setCurrentDate(getMainDate());
@@ -59,12 +60,14 @@ public class MainActivity extends WearableActivity { //must also show the table 
         binding.recyclerLauncherView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         drinkListAdapter = new DrinkListAdapter(myList);
         binding.recyclerLauncherView.setAdapter(drinkListAdapter);
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        new ItemTouchHelper(new ItemTouchHelper
+                            .SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            public boolean onMove(@NonNull RecyclerView recyclerView
+                    , @NonNull RecyclerView.ViewHolder viewHolder
+                    , @NonNull RecyclerView.ViewHolder target) {
                 return false;
             }
-
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 myList.remove(viewHolder.getAdapterPosition());

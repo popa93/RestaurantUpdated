@@ -1,16 +1,26 @@
 package viewmodel;
 
 import android.app.Application;
+import android.graphics.Bitmap;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -28,14 +38,16 @@ class AdminMainViewModel extends AndroidViewModel {
     public MutableLiveData<String> comparativeData = new MutableLiveData<>();
 
 
+
     public AdminMainViewModel(@NonNull Application application) {
         super(application);
     }
 
 
+
+
+
     public void getCurrentDayIncome() {
-
-
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -50,10 +62,8 @@ class AdminMainViewModel extends AndroidViewModel {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
-
     }
 
     public void getComparativePercentage() {

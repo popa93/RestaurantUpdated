@@ -8,6 +8,7 @@ class Order {
     public String total;
     public String date;
     public String orderStatus = "false";
+    //public String orderStatus;
     public String remarks;
 
     public Order() {

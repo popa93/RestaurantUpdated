@@ -38,6 +38,100 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
+        <ImageView
+            android:id="@+id/itemPicture"
+            android:layout_width="@dimen/dialog_height"
+            android:layout_height="@dimen/dialog_height"
+            android:layout_marginTop="@dimen/details_frag_view_layout_margin_TOP"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/ic_launcher_background"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout2" />
+
+        <EditText
+            android:id="@+id/ingredientsOfItem"
+            android:layout_width="@dimen/card_view_layout_height"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/admin_action_layout_width"
+            android:hint="ingredients"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/itemPicture" />
+
+        <EditText
+            android:id="@+id/namesOfItem"
+            android:layout_width="@dimen/card_view_layout_height"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/recycler_order_item_layout_height"
+            android:hint="name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ingredientsOfItem" />
+
+        <EditText
+            android:id="@+id/priceOfItem"
+            android:layout_width="@dimen/card_view_layout_height"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/recycler_order_item_layout_height"
+            android:hint="price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/namesOfItem" />
+
+        <EditText
+            android:id="@+id/quantityOfItem"
+            android:layout_width="@dimen/card_view_layout_height"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/recycler_order_item_layout_height"
+            android:hint="quantity"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/priceOfItem" />
+
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/constraintLayout_paddingTop"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/quantityOfItem">
+
+            <RadioButton
+                android:id="@+id/radioDrink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="drink" />
+
+            <RadioButton
+                android:id="@+id/radioFood"
+                android:checked="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="food" />
+
+        </RadioGroup>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addNewItem"
+            android:layout_width="@dimen/admin_action_layout_width"
+            android:layout_height="@dimen/admin_action_layout_width"
+            android:layout_marginBottom="@dimen/details_frag_FAB_margin_bottom"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.955"
+            app:layout_constraintStart_toStartOf="parent" />
+
         <TextView
             android:id="@+id/hoursLabel"
             android:layout_width="wrap_content"

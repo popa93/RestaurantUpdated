@@ -11,12 +11,6 @@ import java.util.List;
 public
 interface ItemDao {
 
-    @Insert
-    List<Long> insertAll(ArrayList<Pizza> pizzas); //return primary keys from dog list inserted
-
-    @Insert
-    List<Long> insertAllDrinks(ArrayList<Drink> drinks);
-
     @Query("SELECT * FROM Food")
     List<Pizza> getAllItems();
 
@@ -28,4 +22,10 @@ interface ItemDao {
 
     @Query("DELETE FROM Drinks")
     void deleteAllDrinks();
+
+    @Insert
+    List<Long> insertAllDrinks(ArrayList<Drink> drinks);
+
+    @Insert
+    List<Long> insertAll(ArrayList<Pizza> pizzas); //return primary keys from list inserted
 }

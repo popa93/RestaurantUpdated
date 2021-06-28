@@ -11,8 +11,6 @@ class DataBindingHelper {
 
     @BindingAdapter("android:imageUrl")
     public static void loadImage(ImageView imageView, String url) {
-
         Glide.with(imageView.getContext()).load(url).into(imageView);
-
     }
 }
